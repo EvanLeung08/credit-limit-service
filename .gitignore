@@ -1,0 +1,7 @@
+# Project exclude paths
+/credit-limit-service-app/target/
+/credit-limit-service-client/target/
+/credit-limit-service-controller/target/
+/credit-limit-service-domain/target/
+/credit-limit-service-infrastructure/target/
+/start/target/
