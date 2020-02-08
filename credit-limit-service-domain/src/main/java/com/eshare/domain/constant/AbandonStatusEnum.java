@@ -1,5 +1,10 @@
 package com.eshare.domain.constant;
 
+/**
+ * @Author Evan Leung
+ *
+ * 废弃状态
+ */
 public enum AbandonStatusEnum {
 
     ABANDONED(1),

@@ -1,5 +1,10 @@
 package com.eshare.domain.constant;
 
+/**
+ * @Author Evan Leung
+ *
+ * 激活状态
+ */
 public enum ActiveStatusEnum {
 
     /**

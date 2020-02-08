@@ -7,6 +7,11 @@ import com.eshare.dto.CustomerAddCmd;
 import com.eshare.dto.CustomerListByNameQry;
 import com.eshare.dto.domainmodel.Customer;
 
+/**
+ * @Author Evan Leung
+ *
+ * 额度服务接口
+ */
 public interface CreditLimitServiceI {
 
     public Response registerProductLimit(CreditLimitRegisterCmd creditLimitRegisterCmd);

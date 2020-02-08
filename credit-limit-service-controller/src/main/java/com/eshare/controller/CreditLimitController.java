@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.alibaba.cola.dto.Response;
 
 
+/**
+ * @Author Evan Leung
+ *
+ * 额度控制类
+ */
 @RestController
 public class CreditLimitController {
 

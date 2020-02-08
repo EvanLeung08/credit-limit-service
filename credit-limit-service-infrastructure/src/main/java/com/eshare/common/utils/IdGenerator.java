@@ -2,6 +2,10 @@ package com.eshare.common.utils;
 
 import org.springframework.stereotype.Component;
 
+/**
+ * @Author JCccc
+ * <p>该工具来自互联网:https://blog.csdn.net/qq_35387940/article/details/91539139</p>
+ */
 @Component
 public class IdGenerator {
     // ==============================Fields===========================================

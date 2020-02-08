@@ -5,6 +5,11 @@ import lombok.Data;
 
 import java.util.Date;
 
+/**
+ * @Author Evan Leung
+ *
+ * 额度注册命令
+ */
 @Data
 public class CreditLimitRegisterCmd extends Command {
     /**

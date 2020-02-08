@@ -5,6 +5,11 @@ import lombok.Data;
 
 import java.util.Date;
 
+/**
+ * @Author Evan Leung
+ *
+ * 产品额度领域对象
+ */
 @Data
 @Entity
 public class ProductLimit {

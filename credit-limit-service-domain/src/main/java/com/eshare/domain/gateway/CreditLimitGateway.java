@@ -8,6 +8,13 @@ import com.eshare.domain.creditlimit.ProductLimit;
 import javax.annotation.Nullable;
 import java.util.Date;
 
+/**
+ * @Author Evan Leung
+ *
+ * 额度网关
+ *
+ * @decription 用于从基础设施层获取数据
+ */
 public interface CreditLimitGateway {
     /**
      * 注册额度

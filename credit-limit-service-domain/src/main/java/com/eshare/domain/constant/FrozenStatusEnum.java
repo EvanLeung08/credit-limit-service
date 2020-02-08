@@ -1,6 +1,7 @@
 package com.eshare.domain.constant;
 
 /**
+ * @Author Evan Leung
  * 冻结状态
  */
 public enum FrozenStatusEnum {

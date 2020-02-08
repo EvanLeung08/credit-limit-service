@@ -12,6 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Nullable;
 import java.util.Date;
 
+/**
+ * @Author Evan Leung
+ *
+ * 客户注册命令执行类
+ */
 @Command
 public class CreditLimitRegisterCmdExe implements CommandExecutorI<Response, CreditLimitRegisterCmd> {
 
