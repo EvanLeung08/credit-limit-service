@@ -1,5 +1,6 @@
 package com.eshare.dto.clientobject;
 
+import com.alibaba.cola.dto.ClientObject;
 import lombok.Data;
 
 import java.util.Date;
@@ -10,7 +11,7 @@ import java.util.Date;
  * 额度注册客户对象
  */
 @Data
-public class RegistrationLimitCO {
+public class RegistrationLimitCO extends ClientObject {
 
     /**
      * 申请ID

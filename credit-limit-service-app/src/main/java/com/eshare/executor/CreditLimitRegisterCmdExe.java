@@ -4,6 +4,7 @@ import com.alibaba.cola.command.Command;
 import com.alibaba.cola.command.CommandExecutorI;
 import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.exception.BizException;
+import com.alibaba.cola.extension.BizScenario;
 import com.eshare.common.BizCode;
 import com.eshare.domain.creditlimit.RegistrationLimit;
 import com.eshare.domain.gateway.CustomerInfoGateway;
@@ -41,6 +42,7 @@ public class CreditLimitRegisterCmdExe implements CommandExecutorI<Response, Cre
         BeanUtils.copyProperties(registrationLimitCO, registrationLimit);
         Long customerId = customerInfoGateway.getCustomerId(registrationLimitCO.getUserId());
         registrationLimit.setCustomerId(customerId);
+        registrationLimit.setBizScenario(BizScenario.valueOf("eshare", "registerLimit", "jd"));
         CustomerLimitDO customerLimitDO = customerLimitRepository.find(customerId);
         if (customerLimitDO == null) {
             customerLimitDO = customerLimitRepository.init(customerId);
