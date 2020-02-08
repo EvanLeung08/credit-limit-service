@@ -12,7 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author Evan Leung
  */
 @SpringBootApplication(scanBasePackages = {"com.eshare","com.alibaba.cola"})
-@MapperScan("com.eshare.repository")
+@MapperScan("com.eshare.tunnel.database.repository")
 public class Application {
 
     public static void main(String[] args) {

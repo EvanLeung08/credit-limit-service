@@ -5,3 +5,9 @@
 /credit-limit-service-domain/target/
 /credit-limit-service-infrastructure/target/
 /start/target/
+/.idea/
+/credit-limit-service-app/credit-limit-service-app.iml
+/credit-limit-service-controller/credit-limit-service-controller.iml
+/credit-limit-service-domain/credit-limit-service-domain.iml
+/credit-limit-service-infrastructure/credit-limit-service-infrastructure.iml
+/credit-limit-service.iml

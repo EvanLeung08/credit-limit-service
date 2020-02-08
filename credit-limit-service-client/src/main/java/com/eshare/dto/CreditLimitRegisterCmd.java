@@ -16,11 +16,11 @@ public class CreditLimitRegisterCmd extends Command {
      */
     private Long userId;
     /**
-     *  产品编号
+     * 产品编号
      */
     private Integer quotaLimit;
     /**
-     *  产品编号
+     * 产品编号
      */
     private String productCode;
     /**

@@ -1,4 +1,4 @@
-package com.eshare.repository;
+package com.eshare.tunnel.database.dataobject;
 
 import lombok.Data;
 
