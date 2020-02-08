@@ -1,4 +1,4 @@
-package com.eshare.tunnel.database.repository;
+package com.eshare.repository;
 
 import com.eshare.domain.customer.Customer;
 import com.eshare.domain.gateway.CustomerGateway;

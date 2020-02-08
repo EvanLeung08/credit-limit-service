@@ -1,4 +1,4 @@
-package com.eshare.domain.creditlimit;
+package com.eshare.tunnel.database.dataobject;
 
 import com.alibaba.cola.domain.Entity;
 import lombok.Data;
@@ -8,11 +8,12 @@ import java.util.Date;
 /**
  * @Author Evan Leung
  *
- * 产品额度领域对象
+ * 客户额度数据对象
  */
 @Data
 @Entity
-public class ProductLimit {
+public class CustomerLimitDO {
+
     /**
      * 主键
      */
@@ -38,21 +39,9 @@ public class ProductLimit {
      */
     private String serialNumber;
     /**
-     * 卡id
-     */
-    private Long cardId;
-    /**
      * 客户id
      */
     private Long customerId;
-    /**
-     * 用户id
-     */
-    private Long userId;
-    /**
-     * 产品编号
-     */
-    private String productCode;
     /**
      * 总额度
      */
@@ -78,9 +67,9 @@ public class ProductLimit {
      */
     private Integer quotaChange;
     /**
-     * 额度模式,1:一次性使用额度;2:可循环授信额度;对应卡表的cardType
+     * 额度类型
      */
-    private Integer quotaMode;
+    private String quotaType;
     /**
      * 冻结状态,1:正常,2:系统冻结,3:人工冻结
      */
@@ -94,7 +83,7 @@ public class ProductLimit {
      */
     private Integer expireStatus;
     /**
-     * 过期期限
+     * 冻结日期
      */
     private Date expirationTime;
     /**
@@ -109,8 +98,4 @@ public class ProductLimit {
      * 父节点id
      */
     private Long parentId;
-    /**
-     * 是否废弃
-     */
-    private Integer abandoned;
 }
