@@ -10,7 +10,7 @@ import com.eshare.domain.creditlimit.RegistrationLimit;
 import com.eshare.domain.gateway.CustomerInfoGateway;
 import com.eshare.dto.CreditLimitRegisterCmd;
 import com.eshare.dto.clientobject.RegistrationLimitCO;
-import com.eshare.tunnel.database.dataobject.CustomerLimitDO;
+import com.eshare.domain.creditlimit.CustomerLimit;
 import com.eshare.repository.CustomerLimitRepository;
 import com.eshare.repository.ProductLimitRepository;
 import org.springframework.beans.BeanUtils;
@@ -43,12 +43,12 @@ public class CreditLimitRegisterCmdExe implements CommandExecutorI<Response, Cre
         Long customerId = customerInfoGateway.getCustomerId(registrationLimitCO.getUserId());
         registrationLimit.setCustomerId(customerId);
         registrationLimit.setBizScenario(BizScenario.valueOf("eshare", "registerLimit", "jd"));
-        CustomerLimitDO customerLimitDO = customerLimitRepository.find(customerId);
-        if (customerLimitDO == null) {
-            customerLimitDO = customerLimitRepository.init(customerId);
+        CustomerLimit customerLimit = customerLimitRepository.find(customerId);
+        if (customerLimit == null) {
+            customerLimit = customerLimitRepository.init(customerId);
         }
         int cardQuota = productLimitRepository.sumQuota(customerId);
-        if (customerLimitDO.getQuotaLimit() < cardQuota + registrationLimitCO.getQuotaLimit()) {
+        if (customerLimit.getQuotaLimit() < cardQuota + registrationLimitCO.getQuotaLimit()) {
             throw new BizException(BizCode.BIZ_ONE);
         }
 
