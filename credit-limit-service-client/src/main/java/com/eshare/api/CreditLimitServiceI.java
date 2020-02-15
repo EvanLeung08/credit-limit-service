@@ -1,13 +1,9 @@
 package com.eshare.api;
 
-import com.alibaba.cola.dto.MultiResponse;
-import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.dto.SingleResponse;
 import com.eshare.dto.*;
-import com.eshare.dto.domainmodel.CreditLimitRegisterResponse;
-import com.eshare.dto.domainmodel.Customer;
-import com.eshare.dto.domainmodel.CustomerLimitResponse;
-import com.eshare.dto.domainmodel.ProductLimitResponse;
+import com.eshare.dto.domainmodel.CustomerLimit;
+import com.eshare.dto.domainmodel.ProductLimit;
 
 /**
  * @Author Evan Leung
@@ -16,10 +12,10 @@ import com.eshare.dto.domainmodel.ProductLimitResponse;
  */
 public interface CreditLimitServiceI {
 
-    public SingleResponse<CreditLimitRegisterResponse> registerProductLimit(CreditLimitRegisterCmd creditLimitRegisterCmd);
+    public SingleResponse<ProductLimit> registerProductLimit(CreditLimitRegisterCmd creditLimitRegisterCmd);
 
-    public SingleResponse<CustomerLimitResponse> fetchCustomerLimit(CustomerLimitQryCmd customerLimitQryCmd);
+    public SingleResponse<CustomerLimit> fetchCustomerLimit(CustomerLimitQryCmd customerLimitQryCmd);
 
-    public SingleResponse<ProductLimitResponse> fetchProductLimit(ProductLimitQryCmd productLimitQryCmd);
+    public SingleResponse<ProductLimit> fetchProductLimit(ProductLimitQryCmd productLimitQryCmd);
 
 }

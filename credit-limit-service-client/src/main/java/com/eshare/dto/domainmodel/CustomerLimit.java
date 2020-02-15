@@ -8,7 +8,7 @@ import lombok.Data;
  **/
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CustomerLimitResponse {
+public class CustomerLimit {
 
     /**
      * 客户ID
