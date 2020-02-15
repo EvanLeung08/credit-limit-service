@@ -7,6 +7,6 @@ import org.springframework.stereotype.Component;
 public class CustomerInfoGatewayImpl implements CustomerInfoGateway {
     @Override
     public Long getCustomerId(Long userId) {
-        return null;
+        return 111111l;
     }
 }

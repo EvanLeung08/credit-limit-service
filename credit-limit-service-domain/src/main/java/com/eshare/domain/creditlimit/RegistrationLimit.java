@@ -13,7 +13,6 @@ import java.util.Date;
  * 额度注册客户对象
  */
 @Data
-@Entity
 public class RegistrationLimit extends EntityObject {
 
     /**
