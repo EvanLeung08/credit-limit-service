@@ -20,11 +20,11 @@ CREATE TABLE `t_product_limit`
     `frozen_status`   tinyint,
     `frozen_time`     datetime COMMENT '冻结时间',
     `expire_status`   tinyint,
-    `expiration_time` datetime COMMENT '过期时间',
+    `expiration_time` datetime default now()+300 COMMENT '过期时间',
     `active_status`   tinyint,
     `inactive_time`   datetime COMMENT '禁用时间',
     `parent_id`       bigint(20),
-    `abandoned`       tinyint,
+    `abandoned`       tinyint default 0,
     PRIMARY KEY (`id`)
 );
 
@@ -47,14 +47,14 @@ CREATE TABLE `t_customer_limit`
     `quota_base`      bigint(20),
     `quota_change`    bigint(20),
     `quota_mode`      tinyint,
-    `quota_type`      varchar,
+    `quota_type`      varchar(10),
     `frozen_status`   tinyint,
     `frozen_time`     datetime COMMENT '冻结时间',
     `expire_status`   tinyint,
-    `expiration_time` datetime COMMENT '过期时间',
+    `expiration_time` datetime default now()+300 COMMENT '过期时间',
     `active_status`   tinyint,
     `inactive_time`   datetime COMMENT '禁用时间',
     `parent_id`       bigint(20),
-    `abandoned`       tinyint,
+    `abandoned`       tinyint default 0,
     PRIMARY KEY (`id`)
 );

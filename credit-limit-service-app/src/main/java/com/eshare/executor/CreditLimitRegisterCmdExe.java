@@ -3,18 +3,23 @@ package com.eshare.executor;
 import com.alibaba.cola.command.Command;
 import com.alibaba.cola.command.CommandExecutorI;
 import com.alibaba.cola.dto.Response;
+import com.alibaba.cola.dto.SingleResponse;
 import com.alibaba.cola.exception.BizException;
 import com.alibaba.cola.extension.BizScenario;
 import com.eshare.common.BizCode;
+import com.eshare.domain.creditlimit.ProductLimit;
 import com.eshare.domain.creditlimit.RegistrationLimit;
 import com.eshare.domain.gateway.CustomerInfoGateway;
 import com.eshare.dto.CreditLimitRegisterCmd;
 import com.eshare.dto.clientobject.RegistrationLimitCO;
 import com.eshare.domain.creditlimit.CustomerLimit;
+import com.eshare.dto.domainmodel.CreditLimitRegisterResponse;
 import com.eshare.repository.CustomerLimitRepository;
 import com.eshare.repository.ProductLimitRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.security.Signature;
 
 /**
  * @Author Evan Leung
@@ -22,7 +27,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * 客户注册命令执行类
  */
 @Command
-public class CreditLimitRegisterCmdExe implements CommandExecutorI<Response, CreditLimitRegisterCmd> {
+public class CreditLimitRegisterCmdExe implements CommandExecutorI<SingleResponse<CreditLimitRegisterResponse>, CreditLimitRegisterCmd> {
 
     private final ProductLimitRepository productLimitRepository;
     private final CustomerLimitRepository customerLimitRepository;
@@ -36,7 +41,8 @@ public class CreditLimitRegisterCmdExe implements CommandExecutorI<Response, Cre
     }
 
     @Override
-    public Response execute(CreditLimitRegisterCmd cmd) {
+    public SingleResponse<CreditLimitRegisterResponse> execute(CreditLimitRegisterCmd cmd) {
+        CreditLimitRegisterResponse creditLimitRegisterResponse = new CreditLimitRegisterResponse();
         RegistrationLimitCO registrationLimitCO = cmd.getRegistrationLimitCO();
         RegistrationLimit registrationLimit = new RegistrationLimit();
         BeanUtils.copyProperties(registrationLimitCO, registrationLimit);
@@ -53,7 +59,9 @@ public class CreditLimitRegisterCmdExe implements CommandExecutorI<Response, Cre
         }
 
         // 2. 保存额度
-        productLimitRepository.save(registrationLimit);
-        return Response.buildSuccess();
+        ProductLimit productLimit = productLimitRepository.save(registrationLimit);
+        //3. 转换领域对象到dto
+        BeanUtils.copyProperties(productLimit, creditLimitRegisterResponse);
+        return SingleResponse.of(creditLimitRegisterResponse);
     }
 }
