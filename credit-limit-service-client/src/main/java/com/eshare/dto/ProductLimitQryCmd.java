@@ -3,6 +3,8 @@ package com.eshare.dto;
 import com.alibaba.cola.dto.Query;
 import lombok.Data;
 
+import javax.validation.constraints.NotNull;
+
 
 /**
  * @Author Evan Leung
@@ -14,5 +16,6 @@ public class ProductLimitQryCmd extends Query {
     /**
      * 卡号
      */
+    @NotNull
     private Long cardId;
 }

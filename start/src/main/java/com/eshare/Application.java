@@ -23,6 +23,10 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
+    /**
+     * Enable h2 console
+     * @return
+     */
     @Bean
     public ServletRegistrationBean h2servletRegistration() {
         ServletRegistrationBean registration = new ServletRegistrationBean(new WebServlet());

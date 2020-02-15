@@ -4,6 +4,9 @@ import com.alibaba.cola.dto.Command;
 import com.eshare.dto.clientobject.RegistrationLimitCO;
 import lombok.Data;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 /**
  * @Author Evan Leung
  * <p>
@@ -11,5 +14,6 @@ import lombok.Data;
  */
 @Data
 public class CreditLimitRegisterCmd extends Command {
+    @NotNull
     private RegistrationLimitCO registrationLimitCO;
 }
