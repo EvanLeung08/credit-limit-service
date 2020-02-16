@@ -8,7 +8,7 @@
 3.在浏览器访问 http://localhost:8080/swagger-ui.html
 ![额度服务](doc/消费金融额度服务.png)
 
-4。通过以下URL可以进入H2控制台进行表操作
+4.通过以下URL可以进入H2控制台进行表操作
 http://localhost:8080/h2/
 
 ***
