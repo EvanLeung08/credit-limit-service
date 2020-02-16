@@ -24,11 +24,11 @@ public class CustomerLimitQryExe implements QueryExecutorI<SingleResponse<Custom
     @Override
     public SingleResponse<CustomerLimit> execute(CustomerLimitQryCmd cmd) {
         CustomerLimit customerLimitResponse = new CustomerLimit();
-        com.eshare.domain.creditlimit.CustomerLimit customerLimit = customerLimitRepository.find(cmd.getCustomerLimitCO().getCustomerId(), cmd.getCustomerLimitCO().getQuotaType());
+        com.eshare.domain.creditlimit.CustomerLimit customerLimit = customerLimitRepository.find(cmd.getCustomerId(), cmd.getQuotaType());
         if (customerLimit == null) {
-            customerLimit = customerLimitRepository.init(cmd.getCustomerLimitCO().getCustomerId());
+            customerLimit = customerLimitRepository.init(cmd.getCustomerId());
         }
-        int totalCardLimit = productLimitRepository.sumQuota(cmd.getCustomerLimitCO().getCustomerId());
+        int totalCardLimit = productLimitRepository.sumQuota(cmd.getCustomerId());
         customerLimit.setQuotaBalance(customerLimit.getQuotaBalance() - totalCardLimit);
 
         //Convert domain object to dto

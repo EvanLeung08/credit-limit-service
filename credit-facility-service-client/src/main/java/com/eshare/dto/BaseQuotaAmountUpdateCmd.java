@@ -21,9 +21,14 @@ public class BaseQuotaAmountUpdateCmd extends Command {
     @NotBlank
     private String applicationId;
     /**
-     * 卡ID
+     * 命令类型 1.变更额度 2.冻结额度 3.解冻额度 4.恢复额度
      */
-    @NotNull
+    @Min(1)
+    @Max(1)
+    private Integer commandType;
+    /**
+     * 账户ID
+     */
     private Long accountId;
     /**
      * 操作金额

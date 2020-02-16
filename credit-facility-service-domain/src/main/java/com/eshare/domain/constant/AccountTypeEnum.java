@@ -3,7 +3,7 @@ package com.eshare.domain.constant;
 /**
  * @Author Evan Leung
  *
- * 卡类型
+ * 账户类型
  */
 public enum AccountTypeEnum {
 

@@ -13,7 +13,7 @@ import com.eshare.dto.domainmodel.ProductLimit;
  */
 public interface CreditFacilityServiceI {
 
-    public SingleResponse<ProductLimit> registerProductLimit(CreditLimitRegisterCmd creditLimitRegisterCmd);
+    public SingleResponse<ProductLimit> registerAccount(CreditLimitRegisterCmd creditLimitRegisterCmd);
 
     public Response freezeQuota(QuotaFreezeCmd quotaFreezeCmd);
 
@@ -38,6 +38,10 @@ public interface CreditFacilityServiceI {
     public Response abandonProductQuota(ProductQuotaAbandonmentCmd productQuotaAbandonmentCmd);
 
     public Response changeQuota(QuotaChangeCmd qotaChangeCmd);
+
+    public Response dispatchQuotaChangeCmd(BaseQuotaAmountUpdateCmd baseQuotaAmountUpdateCmd);
+
+    public Response dispatchQuotaStatusChangeCmd(BaseQuotaStatusChangeCmd baseQuotaStatusChangeCmd);
 
     public SingleResponse<CustomerLimit> fetchCustomerLimit(CustomerLimitQryCmd customerLimitQryCmd);
 

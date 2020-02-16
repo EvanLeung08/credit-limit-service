@@ -1,6 +1,8 @@
 package com.eshare.dto.domainmodel;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Data;
 
 /**
@@ -13,6 +15,7 @@ public class CustomerLimit {
     /**
      * 客户ID
      */
+    @JsonSerialize(using= ToStringSerializer.class)//解决前端精度丢失问题
     private Long customerId;
     /**
      * 是否删除,1:删除,0:正常

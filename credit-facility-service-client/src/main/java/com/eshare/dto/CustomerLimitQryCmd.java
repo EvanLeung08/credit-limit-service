@@ -13,6 +13,14 @@ import javax.validation.constraints.NotNull;
  **/
 @Data
 public class CustomerLimitQryCmd extends Query {
+    /**
+     * 客户ID
+     */
     @NotNull
-    private CustomerLimitCO customerLimitCO;
+    private Long customerId;
+    /**
+     * 额度类型
+     */
+    @NotNull
+    private String quotaType;
 }
