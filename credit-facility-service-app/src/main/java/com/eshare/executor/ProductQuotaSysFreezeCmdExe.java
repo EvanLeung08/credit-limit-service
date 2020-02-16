@@ -28,7 +28,7 @@ public class ProductQuotaSysFreezeCmdExe implements CommandExecutorI<Response, P
 
     @Override
     public Response execute(ProductQuotaSysFreezeCmd cmd) {
-        ProductLimit productLimit = productLimitRepository.find(cmd.getCardId());
+        ProductLimit productLimit = productLimitRepository.find(cmd.getQuotaAccount());
         // 系统冻结
         productLimitRepository.freeze(productLimit, FrozenStatusEnum.SYSTEM_FROZEN);
         return Response.buildSuccess();

@@ -27,7 +27,7 @@ public class QuotaUnfreezeCmdExe implements CommandExecutorI<Response, QuotaUnfr
 
     @Override
     public Response execute(QuotaUnfreezeCmd cmd) {
-        ProductLimit productLimit = productLimitRepository.find(cmd.getCardId());
+        ProductLimit productLimit = productLimitRepository.find(cmd.getQuotaAccount());
         // 冻结额度
         productLimitRepository.unfreezeAmount(productLimit, cmd.getOperationAmount());
         return Response.buildSuccess();

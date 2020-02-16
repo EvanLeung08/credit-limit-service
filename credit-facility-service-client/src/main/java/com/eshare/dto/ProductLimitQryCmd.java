@@ -17,5 +17,5 @@ public class ProductLimitQryCmd extends Query {
      * 卡号
      */
     @NotNull
-    private Long cardId;
+    private Long quotaAccount;
 }

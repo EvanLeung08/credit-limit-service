@@ -22,10 +22,10 @@ http://localhost:8080/h2/
 	"registrationLimitCO": {
 		"applicationId": "1111",
 		"userId": 1111,
-		"quotaLimit": 1111,
+		"quotaLimit": 10000,
 		"productCode": "tb",
 		"expirationTime": "2030-01-01",
-		"cardType": 1
+		"accountType": 1
 	}
 
 }

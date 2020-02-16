@@ -28,7 +28,7 @@ public class ProductQuotaAbandonmentCmdExe implements CommandExecutorI<Response,
 
     @Override
     public Response execute(ProductQuotaAbandonmentCmd cmd) {
-        productLimitRepository.abandonStatus(cmd.getCardId(), AbandonStatusEnum.ABANDONED);
+        productLimitRepository.abandonStatus(cmd.getQuotaAccount(), AbandonStatusEnum.ABANDONED);
         return Response.buildSuccess();
     }
 }

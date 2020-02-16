@@ -36,9 +36,9 @@ public class RegistrationLimit extends EntityObject {
      */
     private Date expirationTime;
     /**
-     * 卡类型,1:一次性授信,2:循环授信
+     * 额度账户类型,1:一次性授信,2:循环授信
      */
-    private Integer cardType;
+    private Integer accountType;
     /**
      * 客户ID
      */

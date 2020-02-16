@@ -48,6 +48,6 @@ public class RegistrationLimitCO extends ClientObject {
      */
     @Max(2)
     @Min(1)
-    private Integer cardType;
+    private Integer accountType;
 
 }

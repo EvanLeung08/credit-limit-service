@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 public class BaseQuotaStatusChangeCmd extends Command {
 
     @NotNull
-    private Long cardId;
+    private Long quotaAccount;
     /**
      * 外部订单ID
      */

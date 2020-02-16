@@ -27,7 +27,7 @@ public class CreditFacilityController {
 
 
 
-    @ApiOperation("注册账户额度接口")
+    @ApiOperation("注册额度账户接口")
     @PostMapping(value = "/credit-facility/account")
     public SingleResponse<ProductLimit> registerProductCreditLimit(@RequestBody CreditLimitRegisterCmd creditLimitRegisterCmd) {
         return creditFacilityServiceI.registerProductLimit(creditLimitRegisterCmd);

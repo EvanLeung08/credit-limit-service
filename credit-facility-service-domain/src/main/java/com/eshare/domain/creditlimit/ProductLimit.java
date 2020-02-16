@@ -38,9 +38,9 @@ public class ProductLimit {
      */
     private String serialNumber;
     /**
-     * 卡id
+     * 额度账户
      */
-    private Long cardId;
+    private Long quotaAccount;
     /**
      * 客户id
      */
