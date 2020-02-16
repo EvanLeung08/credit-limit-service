@@ -21,7 +21,7 @@ public class ProductLimitQryExe implements QueryExecutorI<SingleResponse<Product
     @Override
     public SingleResponse<ProductLimit> execute(ProductLimitQryCmd cmd) {
         ProductLimit productLimitResponse = new ProductLimit();
-        com.eshare.domain.creditlimit.ProductLimit productLimit = productLimitRepository.find(cmd.getQuotaAccount());
+        com.eshare.domain.creditlimit.ProductLimit productLimit = productLimitRepository.find(cmd.getAccountId());
         BeanUtils.copyProperties(productLimit, productLimitResponse);
         return SingleResponse.of(productLimitResponse);
     }

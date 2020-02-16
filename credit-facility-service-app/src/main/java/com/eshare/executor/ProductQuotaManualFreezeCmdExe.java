@@ -28,7 +28,7 @@ public class ProductQuotaManualFreezeCmdExe implements CommandExecutorI<Response
 
     @Override
     public Response execute(ProductQuotaManualFreezeCmd cmd) {
-        ProductLimit productLimit = productLimitRepository.find(cmd.getQuotaAccount());
+        ProductLimit productLimit = productLimitRepository.find(cmd.getAccountId());
         // 系统冻结
         productLimitRepository.freeze(productLimit, FrozenStatusEnum.MANUAL_FROZEN);
         return Response.buildSuccess();

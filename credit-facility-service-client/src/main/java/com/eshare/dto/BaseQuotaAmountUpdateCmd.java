@@ -24,7 +24,7 @@ public class BaseQuotaAmountUpdateCmd extends Command {
      * 卡ID
      */
     @NotNull
-    private Long quotaAccount;
+    private Long accountId;
     /**
      * 操作金额
      */

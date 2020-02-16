@@ -28,7 +28,7 @@ public class ProductQuotaInactiveCmdExe implements CommandExecutorI<Response, Pr
 
     @Override
     public Response execute(ProductQuotaInactiveCmd cmd) {
-        productLimitRepository.changeActiveStatus(cmd.getQuotaAccount(), ActiveStatusEnum.INACTIVE);
+        productLimitRepository.changeActiveStatus(cmd.getAccountId(), ActiveStatusEnum.INACTIVE);
         return Response.buildSuccess();
     }
 }

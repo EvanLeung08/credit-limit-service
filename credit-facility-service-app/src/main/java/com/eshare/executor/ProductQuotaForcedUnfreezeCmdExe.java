@@ -29,7 +29,7 @@ public class ProductQuotaForcedUnfreezeCmdExe implements CommandExecutorI<Respon
 
     @Override
     public Response execute(ProductQuotaForcedUnfreezeCmd cmd) {
-        productLimitRepository.freezeStatus(cmd.getQuotaAccount(), FrozenStatusEnum.NORMAL);
+        productLimitRepository.freezeStatus(cmd.getAccountId(), FrozenStatusEnum.NORMAL);
         return Response.buildSuccess();
     }
 }

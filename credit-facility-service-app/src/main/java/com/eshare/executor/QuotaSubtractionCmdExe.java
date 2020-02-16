@@ -27,7 +27,7 @@ public class QuotaSubtractionCmdExe implements CommandExecutorI<Response, QuotaS
 
     @Override
     public Response execute(QuotaSubtractionCmd cmd) {
-        ProductLimit productLimit = productLimitRepository.findWithNormal(cmd.getQuotaAccount());
+        ProductLimit productLimit = productLimitRepository.findWithNormal(cmd.getAccountId());
         // 扣减产品额度
         productLimitRepository.subtract(productLimit, cmd.getOperationAmount());
         return Response.buildSuccess();

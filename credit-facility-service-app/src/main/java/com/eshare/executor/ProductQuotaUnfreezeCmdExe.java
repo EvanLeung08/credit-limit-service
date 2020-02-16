@@ -29,7 +29,7 @@ public class ProductQuotaUnfreezeCmdExe implements CommandExecutorI<Response, Pr
 
     @Override
     public Response execute(ProductQuotaUnfreezeCmd cmd) {
-        ProductLimit productLimit = productLimitRepository.find(cmd.getQuotaAccount());
+        ProductLimit productLimit = productLimitRepository.find(cmd.getAccountId());
         FrozenStatusEnum currentStatus = FrozenStatusEnum.fromValue(productLimit.getFrozenStatus());
         FrozenStatusEnum frozenStatus;
         switch (currentStatus) {
@@ -43,10 +43,10 @@ public class ProductQuotaUnfreezeCmdExe implements CommandExecutorI<Response, Pr
                 frozenStatus = FrozenStatusEnum.SYSTEM_FROZEN;
                 break;
             default:
-                throw new BizException("Failed to unfreezeQuota,quotaAccount=" + cmd.getQuotaAccount());
+                throw new BizException("Failed to unfreezeQuota,accountId=" + cmd.getAccountId());
         }
 
-        productLimitRepository.freezeStatus(cmd.getQuotaAccount(), frozenStatus);
+        productLimitRepository.freezeStatus(cmd.getAccountId(), frozenStatus);
         return Response.buildSuccess();
     }
 }

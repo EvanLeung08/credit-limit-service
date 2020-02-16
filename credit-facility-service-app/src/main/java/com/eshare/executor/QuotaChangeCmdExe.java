@@ -28,7 +28,7 @@ public class QuotaChangeCmdExe implements CommandExecutorI<Response, QuotaChange
 
     @Override
     public Response execute(QuotaChangeCmd cmd) {
-        ProductLimit productLimit = productLimitRepository.findWithNormal(cmd.getQuotaAccount());
+        ProductLimit productLimit = productLimitRepository.findWithNormal(cmd.getAccountId());
         productLimitRepository.changeQuota(productLimit, cmd.getOperationAmount());
         return Response.buildSuccess();
     }

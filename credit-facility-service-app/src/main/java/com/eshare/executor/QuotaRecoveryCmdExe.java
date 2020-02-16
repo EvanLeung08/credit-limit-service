@@ -27,7 +27,7 @@ public class QuotaRecoveryCmdExe implements CommandExecutorI<Response, QuotaReco
 
     @Override
     public Response execute(QuotaRecoveryCmd cmd) {
-        ProductLimit productLimit = productLimitRepository.find(cmd.getQuotaAccount());
+        ProductLimit productLimit = productLimitRepository.find(cmd.getAccountId());
         // 扣减产品额度
         productLimitRepository.recover(productLimit, cmd.getOperationAmount());
         return Response.buildSuccess();

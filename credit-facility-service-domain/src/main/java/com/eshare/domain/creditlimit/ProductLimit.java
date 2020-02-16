@@ -40,7 +40,7 @@ public class ProductLimit {
     /**
      * 额度账户
      */
-    private Long quotaAccount;
+    private Long accountId;
     /**
      * 客户id
      */

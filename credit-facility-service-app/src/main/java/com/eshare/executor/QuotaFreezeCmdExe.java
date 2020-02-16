@@ -32,7 +32,7 @@ public class QuotaFreezeCmdExe implements CommandExecutorI<Response, QuotaFreeze
 
     @Override
     public Response execute(QuotaFreezeCmd cmd) {
-        ProductLimit productLimit = productLimitRepository.findWithNormal(cmd.getQuotaAccount());
+        ProductLimit productLimit = productLimitRepository.findWithNormal(cmd.getAccountId());
         // 冻结额度
         productLimitRepository.freezeAmount(productLimit, cmd.getOperationAmount());
         return Response.buildSuccess();

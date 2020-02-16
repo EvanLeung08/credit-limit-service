@@ -21,7 +21,7 @@ public class ProductLimit {
     /**
      * 卡ID
      */
-    private Long quotaAccount;
+    private Long accountId;
     /**
      * 是否删除,1:删除,0:正常
      */
