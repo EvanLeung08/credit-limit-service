@@ -11,7 +11,7 @@ import com.eshare.dto.domainmodel.ProductLimit;
  * <p>
  * 额度服务接口
  */
-public interface CreditLimitServiceI {
+public interface CreditFacilityServiceI {
 
     public SingleResponse<ProductLimit> registerProductLimit(CreditLimitRegisterCmd creditLimitRegisterCmd);
 

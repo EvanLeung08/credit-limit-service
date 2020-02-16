@@ -3,7 +3,7 @@ package com.eshare.service;
 import com.alibaba.cola.command.CommandBusI;
 import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.dto.SingleResponse;
-import com.eshare.api.CreditLimitServiceI;
+import com.eshare.api.CreditFacilityServiceI;
 import com.eshare.dto.*;
 import com.eshare.dto.domainmodel.CustomerLimit;
 import com.eshare.dto.domainmodel.ProductLimit;
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
  * 额度服务类
  */
 @Service
-public class CreditLimitServiceImpl implements CreditLimitServiceI {
+public class CreditFacilityServiceImpl implements CreditFacilityServiceI {
 
     @Autowired
     private CommandBusI commandBus;
