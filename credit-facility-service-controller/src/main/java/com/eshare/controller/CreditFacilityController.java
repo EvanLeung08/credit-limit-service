@@ -26,14 +26,9 @@ public class CreditFacilityController {
     private CreditFacilityServiceI creditFacilityServiceI;
 
 
-    @ApiOperation("开通额度账户接口")
-    @PostMapping(value = "/credit-facility/account")
-    public SingleResponse<ProductLimit> registerAccount(@RequestBody CreditLimitRegisterCmd creditLimitRegisterCmd) {
-        return creditFacilityServiceI.registerProductLimit(creditLimitRegisterCmd);
-    }
 
-    @ApiOperation("添加账户额度接口")
-    @PostMapping(value = "/credit-facility/account-quota")
+    @ApiOperation("注册账户额度接口")
+    @PostMapping(value = "/credit-facility/account")
     public SingleResponse<ProductLimit> registerProductCreditLimit(@RequestBody CreditLimitRegisterCmd creditLimitRegisterCmd) {
         return creditFacilityServiceI.registerProductLimit(creditLimitRegisterCmd);
     }
@@ -84,11 +79,11 @@ public class CreditFacilityController {
         return creditFacilityServiceI.unfreezeProductQuota(productQuotaUnfreezeCmd);
     }
 
-/*    @ApiOperation("强制解除额度账户冻结接口")
+   @ApiOperation("强制解除额度账户冻结接口")
     @PutMapping(value = "/credit-facility/account-forced-unfrozen-status")
     public Response forceUnfreezeProductQuota(@RequestBody ProductQuotaForcedUnfreezeCmd productQuotaUnfreezeCmd) {
         return creditFacilityServiceI.forceUnfreezeProductQuota(productQuotaUnfreezeCmd);
-    }*/
+    }
 
     @ApiOperation("启用额度账户接口")
     @PutMapping(value = "/credit-facility/account-enable-status")
