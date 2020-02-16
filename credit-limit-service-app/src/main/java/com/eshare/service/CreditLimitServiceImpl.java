@@ -1,11 +1,10 @@
 package com.eshare.service;
 
 import com.alibaba.cola.command.CommandBusI;
+import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.dto.SingleResponse;
 import com.eshare.api.CreditLimitServiceI;
-import com.eshare.dto.CreditLimitRegisterCmd;
-import com.eshare.dto.CustomerLimitQryCmd;
-import com.eshare.dto.ProductLimitQryCmd;
+import com.eshare.dto.*;
 import com.eshare.dto.domainmodel.CustomerLimit;
 import com.eshare.dto.domainmodel.ProductLimit;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +24,66 @@ public class CreditLimitServiceImpl implements CreditLimitServiceI {
     @Override
     public SingleResponse<ProductLimit> registerProductLimit(CreditLimitRegisterCmd creditLimitRegisterCmd) {
         return (SingleResponse<ProductLimit>) commandBus.send(creditLimitRegisterCmd);
+    }
+
+    @Override
+    public Response freezeQuota(QuotaFreezeCmd quotaFreezeCmd) {
+        return commandBus.send(quotaFreezeCmd);
+    }
+
+    @Override
+    public Response unfreezeQuota(QuotaUnfreezeCmd quotaUnfreezeCmd) {
+        return commandBus.send(quotaUnfreezeCmd);
+    }
+
+    @Override
+    public Response subtractQuota(QuotaSubtractionCmd quotaSubtractionCmd) {
+        return commandBus.send(quotaSubtractionCmd);
+    }
+
+    @Override
+    public Response recoverQuota(QuotaRecoveryCmd quotaRecoveryCmd) {
+        return commandBus.send(quotaRecoveryCmd);
+    }
+
+    @Override
+    public Response freezeProductQuotaBySys(ProductQuotaSysFreezeCmd productQuotaSysFreezeCmd) {
+        return commandBus.send(productQuotaSysFreezeCmd);
+    }
+
+    @Override
+    public Response freezeProductQuotaByMan(ProductQuotaManualFreezeCmd productQuotaManualFreezeCmd) {
+        return commandBus.send(productQuotaManualFreezeCmd);
+    }
+
+    @Override
+    public Response unfreezeProductQuota(ProductQuotaUnfreezeCmd productQuotaUnfreezeCmd) {
+        return commandBus.send(productQuotaUnfreezeCmd);
+    }
+
+    @Override
+    public Response forceUnfreezeProductQuota(ProductQuotaForcedUnfreezeCmd productQuotaUnfreezeCmd) {
+        return commandBus.send(productQuotaUnfreezeCmd);
+    }
+
+    @Override
+    public Response inactivateProductQuota(ProductQuotaInactiveCmd productQuotaInactiveCmd) {
+        return commandBus.send(productQuotaInactiveCmd);
+    }
+
+    @Override
+    public Response activateProductQuota(ProductQuotaActivateCmd productQuotaActivateCmd) {
+        return commandBus.send(productQuotaActivateCmd);
+    }
+
+    @Override
+    public Response abandonProductQuota(ProductQuotaAbandonmentCmd productQuotaAbandonmentCmd) {
+        return commandBus.send(productQuotaAbandonmentCmd);
+    }
+
+    @Override
+    public Response changeQuota(QuotaChangeCmd qotaChangeCmd) {
+        return commandBus.send(qotaChangeCmd);
     }
 
     @Override
