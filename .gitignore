@@ -1,13 +1,13 @@
 # Project exclude paths
-/credit-limit-service-app/target/
-/credit-limit-service-client/target/
-/credit-limit-service-controller/target/
-/credit-limit-service-domain/target/
-/credit-limit-service-infrastructure/target/
+/credit-facility-service-app/target/
+/credit-facility-service-client/target/
+/credit-facility-service-controller/target/
+/credit-facility-service-domain/target/
+/credit-facility-service-infrastructure/target/
 /start/target/
 /.idea/
-/credit-limit-service-app/credit-limit-service-app.iml
-/credit-limit-service-controller/credit-limit-service-controller.iml
-/credit-limit-service-domain/credit-limit-service-domain.iml
-/credit-limit-service-infrastructure/credit-limit-service-infrastructure.iml
-/credit-limit-service.iml
+/credit-facility-service-app/credit-facility-service-app.iml
+/credit-facility-service-controller/credit-facility-service-controller.iml
+/credit-facility-service-domain/credit-facility-service-domain.iml
+/credit-facility-service-infrastructure/credit-facility-service-infrastructure.iml
+/credit-facility-service.iml

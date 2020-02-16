@@ -13,4 +13,4 @@
 
 }
 
-2.Url:localhost:8080/credit-limit/register
+2.Url:localhost:8080/credit-facility/register

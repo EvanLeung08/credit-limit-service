@@ -4,10 +4,10 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.eshare</groupId>
-    <artifactId>credit-limit-service</artifactId>
+    <artifactId>credit-facility-service</artifactId>
     <packaging>pom</packaging>
     <version>1.0.0-SNAPSHOT</version>
-    <name>credit-limit-service</name>
+    <name>credit-facility-service</name>
 
     <properties>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -43,27 +43,27 @@
             <!--Project modules-->
             <dependency>
                 <groupId>com.eshare</groupId>
-                <artifactId>credit-limit-service-controller</artifactId>
+                <artifactId>credit-facility-service-controller</artifactId>
                 <version>1.0.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.eshare</groupId>
-                <artifactId>credit-limit-service-client</artifactId>
+                <artifactId>credit-facility-service-client</artifactId>
                 <version>1.0.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.eshare</groupId>
-                <artifactId>credit-limit-service-app</artifactId>
+                <artifactId>credit-facility-service-app</artifactId>
                 <version>1.0.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.eshare</groupId>
-                <artifactId>credit-limit-service-domain</artifactId>
+                <artifactId>credit-facility-service-domain</artifactId>
                 <version>1.0.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.eshare</groupId>
-                <artifactId>credit-limit-service-infrastructure</artifactId>
+                <artifactId>credit-facility-service-infrastructure</artifactId>
                 <version>1.0.0-SNAPSHOT</version>
             </dependency>
             <!--Project modules End-->
@@ -183,11 +183,11 @@
         </pluginManagement>
     </build>
     <modules>
-        <module>credit-limit-service-client</module>
-        <module>credit-limit-service-controller</module>
-        <module>credit-limit-service-app</module>
-        <module>credit-limit-service-domain</module>
-        <module>credit-limit-service-infrastructure</module>
+        <module>credit-facility-service-client</module>
+        <module>credit-facility-service-controller</module>
+        <module>credit-facility-service-app</module>
+        <module>credit-facility-service-domain</module>
+        <module>credit-facility-service-infrastructure</module>
         <module>start</module>
     </modules>
 </project>
