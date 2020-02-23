@@ -4,14 +4,9 @@ import com.alibaba.cola.command.Command;
 import com.alibaba.cola.command.CommandExecutorI;
 import com.alibaba.cola.dto.Response;
 
-import com.eshare.domain.creditlimit.ProductLimit;
-import com.eshare.domain.gateway.CustomerGateway;
-import com.eshare.dto.CreditLimitRegisterCmd;
+import com.eshare.tunnel.database.dataobject.ProductLimitDO;
 import com.eshare.dto.QuotaFreezeCmd;
-import com.eshare.dto.clientobject.RegistrationLimitCO;
-import com.eshare.repository.CustomerLimitRepository;
 import com.eshare.repository.ProductLimitRepository;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -32,9 +27,9 @@ public class QuotaFreezeCmdExe implements CommandExecutorI<Response, QuotaFreeze
 
     @Override
     public Response execute(QuotaFreezeCmd cmd) {
-        ProductLimit productLimit = productLimitRepository.findWithNormal(cmd.getAccountId());
+        ProductLimitDO productLimitDO = productLimitRepository.findWithNormal(cmd.getAccountId());
         // 冻结额度
-        productLimitRepository.freezeAmount(productLimit, cmd.getOperationAmount());
+        productLimitRepository.freezeAmount(productLimitDO, cmd.getOperationAmount());
         return Response.buildSuccess();
     }
 }

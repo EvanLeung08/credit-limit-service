@@ -3,9 +3,8 @@ package com.eshare.repository;
 import com.alibaba.cola.exception.BizException;
 import com.eshare.common.BizCode;
 import com.eshare.domain.constant.*;
-import com.eshare.domain.creditlimit.RegistrationLimit;
 import com.eshare.tunnel.database.ProductLimitTunnel;
-import com.eshare.domain.creditlimit.ProductLimit;
+import com.eshare.tunnel.database.dataobject.ProductLimitDO;
 import com.google.common.base.Preconditions;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.eshare.common.utils.IdGenerator;
@@ -34,11 +33,11 @@ public class ProductLimitRepository {
      * @param accountId 卡id 和流水通过cardId一对一关联
      * @return
      */
-    public ProductLimit find(Long accountId) {
+    public ProductLimitDO find(Long accountId) {
         accountId = Preconditions.checkNotNull(accountId, "quotaLimit can not null");
-        ProductLimit productLimit = new ProductLimit();
-        productLimit.setAccountId(accountId);
-        ProductLimit result = productLimitTunnel.selectByModelSelective(productLimit, true);
+        ProductLimitDO productLimitDO = new ProductLimitDO();
+        productLimitDO.setAccountId(accountId);
+        ProductLimitDO result = productLimitTunnel.selectByModelSelective(productLimitDO, true);
         if (result == null) {
             throw new BizException(accountId + "");
         }
@@ -51,8 +50,8 @@ public class ProductLimitRepository {
      * @param accountId
      * @return
      */
-    public ProductLimit findWithNormal(Long accountId) {
-        ProductLimit quota = find(accountId);
+    public ProductLimitDO findWithNormal(Long accountId) {
+        ProductLimitDO quota = find(accountId);
 
         if (AbandonStatusEnum.ABANDONED.getValue().equals(quota.getAbandoned())) {
             throw new BizException("");
@@ -73,34 +72,20 @@ public class ProductLimitRepository {
     /**
      * 保存产品额度
      *
-     * @param registrationLimit 注册额度
+     * @param productLimitDO 注册额度
      * @return 入库的数据
      */
-    public ProductLimit save(RegistrationLimit registrationLimit) {
-        Preconditions.checkNotNull(registrationLimit.getUserId(), "userId can not null");
-        Preconditions.checkNotNull(registrationLimit.getQuotaLimit(), "quotaLimit can not null");
-        Preconditions.checkNotNull(registrationLimit.getProductCode(), "productCode can not null");
-        Preconditions.checkNotNull(registrationLimit.getCustomerId(), "customerId can not null");
-        AccountTypeEnum.fromValue(registrationLimit.getAccountType());
-        if (Objects.isNull(registrationLimit.getExpirationTime())) {
-            registrationLimit.setExpirationTime(Constant.MAX_EXPIRATION_DATA);
+    public ProductLimitDO save(ProductLimitDO productLimitDO) {
+        if (Objects.isNull(productLimitDO.getExpirationTime())) {
+            productLimitDO.setExpirationTime(Constant.MAX_EXPIRATION_DATA);
         }
 
-        ProductLimit productLimit = new ProductLimit();
-        productLimit.setId(idGenerator.generateId());
-        productLimit.setAccountId(idGenerator.generateId());
-        productLimit.setSerialNumber(idGenerator.generateId() + "");
+        productLimitDO.setId(idGenerator.generateId());
+        productLimitDO.setAccountId(idGenerator.generateId());
+        productLimitDO.setSerialNumber(idGenerator.generateId() + "");
 
-        productLimit.setUserId(registrationLimit.getUserId());
-        productLimit.setCustomerId(registrationLimit.getCustomerId());
-        productLimit.setQuotaLimit(registrationLimit.getQuotaLimit());
-        productLimit.setQuotaBalance(registrationLimit.getQuotaLimit());
-        productLimit.setQuotaBase(registrationLimit.getQuotaLimit());
-        productLimit.setProductCode(registrationLimit.getProductCode());
-        productLimit.setQuotaMode(registrationLimit.getAccountType());
-        productLimit.setExpirationTime(registrationLimit.getExpirationTime());
-        productLimitTunnel.insertSelective(productLimit);
-        return productLimit;
+        productLimitTunnel.insertSelective(productLimitDO);
+        return productLimitDO;
     }
 
     /**
@@ -109,13 +94,13 @@ public class ProductLimitRepository {
      * @param quota  产品额度
      * @param amount 冻结的额度
      */
-    public void freezeAmount(ProductLimit quota, Integer amount) {
+    public void freezeAmount(ProductLimitDO quota, Integer amount) {
         Preconditions.checkNotNull(quota.getAccountId(), "accountId can not null");
 
-        ProductLimit cond = new ProductLimit();
+        ProductLimitDO cond = new ProductLimitDO();
         cond.setAccountId(quota.getAccountId());
         cond.setVersion(quota.getVersion());
-        ProductLimit model = new ProductLimit();
+        ProductLimitDO model = new ProductLimitDO();
         Integer quotaBalance = quota.getQuotaBalance() - amount;
         // 判断剩余额度
         if (quotaBalance < 0) {
@@ -140,15 +125,15 @@ public class ProductLimitRepository {
      * @param quota  产品额度
      * @param amount 解冻的额度
      */
-    public void unfreezeAmount(ProductLimit quota, Integer amount) {
+    public void unfreezeAmount(ProductLimitDO quota, Integer amount) {
 
         Preconditions.checkNotNull(quota.getAccountId(), "accountId can not null");
 
-        ProductLimit cond = new ProductLimit();
+        ProductLimitDO cond = new ProductLimitDO();
         cond.setAccountId(quota.getAccountId());
         cond.setVersion(quota.getVersion());
 
-        ProductLimit model = new ProductLimit();
+        ProductLimitDO model = new ProductLimitDO();
         Integer quotaFrozen = quota.getQuotaFrozen() - amount;
         // 判断剩余额度
         if (quotaFrozen < 0) {
@@ -172,14 +157,14 @@ public class ProductLimitRepository {
      * @param quota  产品额度
      * @param amount 扣减的额度
      */
-    public void subtract(ProductLimit quota, Integer amount) {
+    public void subtract(ProductLimitDO quota, Integer amount) {
         Preconditions.checkNotNull(quota.getAccountId(), "accountId can not null");
 
-        ProductLimit cond = new ProductLimit();
+        ProductLimitDO cond = new ProductLimitDO();
         cond.setAccountId(quota.getAccountId());
         cond.setVersion(quota.getVersion());
 
-        ProductLimit model = new ProductLimit();
+        ProductLimitDO model = new ProductLimitDO();
         Integer quotaFrozen = quota.getQuotaFrozen() - amount;
         // 判断剩余额度
         if (quotaFrozen < 0) {
@@ -206,13 +191,13 @@ public class ProductLimitRepository {
      * @param quota  产品额度
      * @param amount 恢复金额
      */
-    public void recover(ProductLimit quota, Integer amount) {
+    public void recover(ProductLimitDO quota, Integer amount) {
         Preconditions.checkNotNull(quota.getAccountId(), "accountId can not null");
-        ProductLimit cond = new ProductLimit();
+        ProductLimitDO cond = new ProductLimitDO();
         cond.setAccountId(quota.getAccountId());
         cond.setVersion(quota.getVersion());
 
-        ProductLimit model = new ProductLimit();
+        ProductLimitDO model = new ProductLimitDO();
         model.setQuotaBalance(quota.getQuotaBalance() + amount);
         Integer occupancy = quota.getQuotaOccupancy() - amount;
         model.setQuotaOccupancy(occupancy < 0 ? 0 : occupancy);
@@ -230,14 +215,14 @@ public class ProductLimitRepository {
      * @param quota  产品额度
      * @param amount 更新后的额度
      */
-    public void changeQuota(ProductLimit quota, Integer amount) {
+    public void changeQuota(ProductLimitDO quota, Integer amount) {
         Preconditions.checkNotNull(quota.getAccountId(), "accountId can not null");
 
-        ProductLimit cond = new ProductLimit();
+        ProductLimitDO cond = new ProductLimitDO();
         cond.setAccountId(quota.getAccountId());
         cond.setVersion(quota.getVersion());
 
-        ProductLimit model = new ProductLimit();
+        ProductLimitDO model = new ProductLimitDO();
         // 由于额度总额更改，重新计算剩余额度，有可能为负值
         model.setQuotaBalance(amount - quota.getQuotaFrozen() - quota.getQuotaOccupancy());
         model.setQuotaChange(amount);
@@ -253,11 +238,11 @@ public class ProductLimitRepository {
     /**
      * 更改冻结状态
      *
-     * @param productLimit
+     * @param productLimitDO
      * @param frozenStatusEnum
      */
-    public void freeze(ProductLimit productLimit, FrozenStatusEnum frozenStatusEnum) {
-        switch (FrozenStatusEnum.fromValue(productLimit.getFrozenStatus())) {
+    public void freeze(ProductLimitDO productLimitDO, FrozenStatusEnum frozenStatusEnum) {
+        switch (FrozenStatusEnum.fromValue(productLimitDO.getFrozenStatus())) {
             case SYSTEM_FROZEN:
                 frozenStatusEnum = FrozenStatusEnum.ALL_FROZEN;
                 break;
@@ -269,16 +254,16 @@ public class ProductLimitRepository {
             default:
                 return;
         }
-        this.freezeStatus(productLimit.getAccountId(), frozenStatusEnum);
+        this.freezeStatus(productLimitDO.getAccountId(), frozenStatusEnum);
     }
 
     public void freezeStatus(Long accountId, FrozenStatusEnum frozenStatusEnum) {
         Preconditions.checkNotNull(accountId, "accountId can not null");
 
-        ProductLimit cond = new ProductLimit();
+        ProductLimitDO cond = new ProductLimitDO();
         cond.setAccountId(accountId);
 
-        ProductLimit model = new ProductLimit();
+        ProductLimitDO model = new ProductLimitDO();
         model.setFrozenStatus(frozenStatusEnum.getValue());
         model.setFrozenTime(new Date());
         productLimitTunnel.updateByModelSelective(cond, true, model);
@@ -293,10 +278,10 @@ public class ProductLimitRepository {
     public void changeActiveStatus(Long accountId, ActiveStatusEnum active) {
         Preconditions.checkNotNull(accountId, "accountId can not null");
 
-        ProductLimit cond = new ProductLimit();
+        ProductLimitDO cond = new ProductLimitDO();
         cond.setAccountId(accountId);
 
-        ProductLimit model = new ProductLimit();
+        ProductLimitDO model = new ProductLimitDO();
         model.setActiveStatus(active.getValue());
         model.setInactiveTime(new Date());
         productLimitTunnel.updateByModelSelective(cond, true, model);
@@ -311,10 +296,10 @@ public class ProductLimitRepository {
     public void abandonStatus(Long accountId, AbandonStatusEnum abandonStatusEnum) {
         Preconditions.checkNotNull(accountId, "accountId can not null");
 
-        ProductLimit cond = new ProductLimit();
+        ProductLimitDO cond = new ProductLimitDO();
         cond.setAccountId(accountId);
 
-        ProductLimit model = new ProductLimit();
+        ProductLimitDO model = new ProductLimitDO();
         model.setAbandoned(abandonStatusEnum.getValue());
         productLimitTunnel.updateByModelSelective(cond, true, model);
     }

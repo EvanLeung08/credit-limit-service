@@ -3,8 +3,7 @@ package com.eshare.executor;
 import com.alibaba.cola.command.Command;
 import com.alibaba.cola.command.CommandExecutorI;
 import com.alibaba.cola.dto.Response;
-import com.eshare.domain.creditlimit.ProductLimit;
-import com.eshare.dto.QuotaFreezeCmd;
+import com.eshare.tunnel.database.dataobject.ProductLimitDO;
 import com.eshare.dto.QuotaUnfreezeCmd;
 import com.eshare.repository.ProductLimitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +26,9 @@ public class QuotaUnfreezeCmdExe implements CommandExecutorI<Response, QuotaUnfr
 
     @Override
     public Response execute(QuotaUnfreezeCmd cmd) {
-        ProductLimit productLimit = productLimitRepository.find(cmd.getAccountId());
+        ProductLimitDO productLimitDO = productLimitRepository.find(cmd.getAccountId());
         // 冻结额度
-        productLimitRepository.unfreezeAmount(productLimit, cmd.getOperationAmount());
+        productLimitRepository.unfreezeAmount(productLimitDO, cmd.getOperationAmount());
         return Response.buildSuccess();
     }
 }

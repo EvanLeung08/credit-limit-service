@@ -3,9 +3,8 @@ package com.eshare.executor;
 import com.alibaba.cola.command.Command;
 import com.alibaba.cola.command.CommandExecutorI;
 import com.alibaba.cola.dto.Response;
-import com.eshare.domain.creditlimit.ProductLimit;
+import com.eshare.tunnel.database.dataobject.ProductLimitDO;
 import com.eshare.dto.QuotaRecoveryCmd;
-import com.eshare.dto.QuotaSubtractionCmd;
 import com.eshare.repository.ProductLimitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -27,9 +26,9 @@ public class QuotaRecoveryCmdExe implements CommandExecutorI<Response, QuotaReco
 
     @Override
     public Response execute(QuotaRecoveryCmd cmd) {
-        ProductLimit productLimit = productLimitRepository.find(cmd.getAccountId());
+        ProductLimitDO productLimitDO = productLimitRepository.find(cmd.getAccountId());
         // 扣减产品额度
-        productLimitRepository.recover(productLimit, cmd.getOperationAmount());
+        productLimitRepository.recover(productLimitDO, cmd.getOperationAmount());
         return Response.buildSuccess();
     }
 }

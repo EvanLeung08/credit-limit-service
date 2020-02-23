@@ -4,16 +4,15 @@ import com.alibaba.cola.command.Command;
 import com.alibaba.cola.command.CommandExecutorI;
 import com.alibaba.cola.dto.SingleResponse;
 import com.alibaba.cola.exception.BizException;
-import com.alibaba.cola.extension.BizScenario;
 import com.eshare.common.BizCode;
-import com.eshare.domain.creditlimit.RegistrationLimit;
 import com.eshare.domain.gateway.CustomerGateway;
 import com.eshare.dto.CreditLimitRegisterCmd;
 import com.eshare.dto.clientobject.RegistrationLimitCO;
-import com.eshare.domain.creditlimit.CustomerLimit;
+import com.eshare.tunnel.database.dataobject.CustomerLimitDO;
 import com.eshare.dto.domainmodel.ProductLimit;
 import com.eshare.repository.CustomerLimitRepository;
 import com.eshare.repository.ProductLimitRepository;
+import com.eshare.tunnel.database.dataobject.ProductLimitDO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -38,26 +37,26 @@ public class CreditLimitRegisterCmdExe implements CommandExecutorI<SingleRespons
 
     @Override
     public SingleResponse<ProductLimit> execute(CreditLimitRegisterCmd cmd) {
-        ProductLimit productLimitRsp= new ProductLimit();
+        ProductLimit productLimitRsp = new ProductLimit();
         RegistrationLimitCO registrationLimitCO = cmd.getRegistrationLimitCO();
-        RegistrationLimit registrationLimit = new RegistrationLimit();
-        BeanUtils.copyProperties(registrationLimitCO, registrationLimit);
+        //RegistrationLimit registrationLimit = new RegistrationLimit();
+        ProductLimitDO productLimitDO = new ProductLimitDO();
+        BeanUtils.copyProperties(registrationLimitCO, productLimitDO);
         Long customerId = customerGateway.getCustomerId(registrationLimitCO.getUserId());
-        registrationLimit.setCustomerId(customerId);
-        registrationLimit.setBizScenario(BizScenario.valueOf("eshare", "registerLimit", "jd"));
-        CustomerLimit customerLimit = customerLimitRepository.find(customerId);
-        if (customerLimit == null) {
-            customerLimit = customerLimitRepository.init(customerId);
+        productLimitDO.setCustomerId(customerId);
+        CustomerLimitDO customerLimitDO = customerLimitRepository.find(customerId);
+        if (customerLimitDO == null) {
+            customerLimitDO = customerLimitRepository.init(customerId);
         }
         int cardQuota = productLimitRepository.sumQuota(customerId);
-        if (customerLimit.getQuotaLimit() < cardQuota + registrationLimitCO.getQuotaLimit()) {
+        if (customerLimitDO.getQuotaLimit() < cardQuota + registrationLimitCO.getQuotaLimit()) {
             throw new BizException(BizCode.BIZ_ONE);
         }
 
         // 2. 保存额度
-        com.eshare.domain.creditlimit.ProductLimit productLimit = productLimitRepository.save(registrationLimit);
+        productLimitDO = productLimitRepository.save(productLimitDO);
         //3. 转换领域对象到dto
-        BeanUtils.copyProperties(productLimit, productLimitRsp);
+        BeanUtils.copyProperties(productLimitDO, productLimitRsp);
         return SingleResponse.of(productLimitRsp);
     }
 }

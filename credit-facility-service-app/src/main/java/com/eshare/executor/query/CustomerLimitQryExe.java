@@ -24,15 +24,15 @@ public class CustomerLimitQryExe implements QueryExecutorI<SingleResponse<Custom
     @Override
     public SingleResponse<CustomerLimit> execute(CustomerLimitQryCmd cmd) {
         CustomerLimit customerLimitResponse = new CustomerLimit();
-        com.eshare.domain.creditlimit.CustomerLimit customerLimit = customerLimitRepository.find(cmd.getCustomerId(), cmd.getQuotaType());
-        if (customerLimit == null) {
-            customerLimit = customerLimitRepository.init(cmd.getCustomerId());
+        com.eshare.tunnel.database.dataobject.CustomerLimitDO customerLimitDO = customerLimitRepository.find(cmd.getCustomerId(), cmd.getQuotaType());
+        if (customerLimitDO == null) {
+            customerLimitDO = customerLimitRepository.init(cmd.getCustomerId());
         }
         int totalCardLimit = productLimitRepository.sumQuota(cmd.getCustomerId());
-        customerLimit.setQuotaBalance(customerLimit.getQuotaBalance() - totalCardLimit);
+        customerLimitDO.setQuotaBalance(customerLimitDO.getQuotaBalance() - totalCardLimit);
 
         //Convert domain object to dto
-        BeanUtils.copyProperties(customerLimit, customerLimitResponse);
+        BeanUtils.copyProperties(customerLimitDO, customerLimitResponse);
         return SingleResponse.of(customerLimitResponse);
     }
 }

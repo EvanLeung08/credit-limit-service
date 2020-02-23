@@ -5,8 +5,7 @@ import com.alibaba.cola.command.CommandExecutorI;
 import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.exception.BizException;
 import com.eshare.domain.constant.FrozenStatusEnum;
-import com.eshare.domain.creditlimit.ProductLimit;
-import com.eshare.dto.ProductQuotaManualFreezeCmd;
+import com.eshare.tunnel.database.dataobject.ProductLimitDO;
 import com.eshare.dto.ProductQuotaUnfreezeCmd;
 import com.eshare.repository.ProductLimitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +28,8 @@ public class ProductQuotaUnfreezeCmdExe implements CommandExecutorI<Response, Pr
 
     @Override
     public Response execute(ProductQuotaUnfreezeCmd cmd) {
-        ProductLimit productLimit = productLimitRepository.find(cmd.getAccountId());
-        FrozenStatusEnum currentStatus = FrozenStatusEnum.fromValue(productLimit.getFrozenStatus());
+        ProductLimitDO productLimitDO = productLimitRepository.find(cmd.getAccountId());
+        FrozenStatusEnum currentStatus = FrozenStatusEnum.fromValue(productLimitDO.getFrozenStatus());
         FrozenStatusEnum frozenStatus;
         switch (currentStatus) {
             case MANUAL_FROZEN:

@@ -1,4 +1,4 @@
-package com.eshare.domain.creditlimit;
+package com.eshare.tunnel.database.dataobject;
 
 import com.alibaba.cola.domain.Entity;
 import lombok.Data;
@@ -12,7 +12,7 @@ import java.util.Date;
  */
 @Data
 @Entity
-public class ProductLimit {
+public class ProductLimitDO {
     /**
      * 主键
      */
