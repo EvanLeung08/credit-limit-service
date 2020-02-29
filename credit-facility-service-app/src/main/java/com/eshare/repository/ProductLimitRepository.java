@@ -34,7 +34,6 @@ public class ProductLimitRepository {
      * @return
      */
     public ProductLimitDO find(Long accountId) {
-        accountId = Preconditions.checkNotNull(accountId, "quotaLimit can not null");
         ProductLimitDO productLimitDO = new ProductLimitDO();
         productLimitDO.setAccountId(accountId);
         ProductLimitDO result = productLimitTunnel.selectByModelSelective(productLimitDO, true);
@@ -96,8 +95,6 @@ public class ProductLimitRepository {
      * @param amount 冻结的额度
      */
     public void freezeAmount(ProductLimitDO quota, Integer amount) {
-        Preconditions.checkNotNull(quota.getAccountId(), "accountId can not null");
-
         ProductLimitDO cond = new ProductLimitDO();
         cond.setAccountId(quota.getAccountId());
         cond.setVersion(quota.getVersion());
@@ -127,9 +124,6 @@ public class ProductLimitRepository {
      * @param amount 解冻的额度
      */
     public void unfreezeAmount(ProductLimitDO quota, Integer amount) {
-
-        Preconditions.checkNotNull(quota.getAccountId(), "accountId can not null");
-
         ProductLimitDO cond = new ProductLimitDO();
         cond.setAccountId(quota.getAccountId());
         cond.setVersion(quota.getVersion());
@@ -193,7 +187,6 @@ public class ProductLimitRepository {
      * @param amount 恢复金额
      */
     public void recover(ProductLimitDO quota, Integer amount) {
-        Preconditions.checkNotNull(quota.getAccountId(), "accountId can not null");
         ProductLimitDO cond = new ProductLimitDO();
         cond.setAccountId(quota.getAccountId());
         cond.setVersion(quota.getVersion());
@@ -217,8 +210,6 @@ public class ProductLimitRepository {
      * @param amount 更新后的额度
      */
     public void changeQuota(ProductLimitDO quota, Integer amount) {
-        Preconditions.checkNotNull(quota.getAccountId(), "accountId can not null");
-
         ProductLimitDO cond = new ProductLimitDO();
         cond.setAccountId(quota.getAccountId());
         cond.setVersion(quota.getVersion());
@@ -259,8 +250,6 @@ public class ProductLimitRepository {
     }
 
     public void freezeStatus(Long accountId, FrozenStatusEnum frozenStatusEnum) {
-        Preconditions.checkNotNull(accountId, "accountId can not null");
-
         ProductLimitDO cond = new ProductLimitDO();
         cond.setAccountId(accountId);
 
@@ -277,8 +266,6 @@ public class ProductLimitRepository {
      * @param active
      */
     public void changeActiveStatus(Long accountId, ActiveStatusEnum active) {
-        Preconditions.checkNotNull(accountId, "accountId can not null");
-
         ProductLimitDO cond = new ProductLimitDO();
         cond.setAccountId(accountId);
 
@@ -295,8 +282,6 @@ public class ProductLimitRepository {
      * @param abandonStatusEnum
      */
     public void abandonStatus(Long accountId, AbandonStatusEnum abandonStatusEnum) {
-        Preconditions.checkNotNull(accountId, "accountId can not null");
-
         ProductLimitDO cond = new ProductLimitDO();
         cond.setAccountId(accountId);
 
@@ -312,7 +297,6 @@ public class ProductLimitRepository {
      * @return
      */
     public int sumQuota(Long customerId) {
-        Preconditions.checkNotNull(customerId, "customerId can not null");
         Integer sum = productLimitTunnel.sumQuota(customerId);
         return sum == null ? 0 : sum;
     }

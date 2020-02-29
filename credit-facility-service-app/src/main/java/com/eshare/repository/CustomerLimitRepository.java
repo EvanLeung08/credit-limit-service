@@ -14,7 +14,7 @@ public class CustomerLimitRepository {
 
     private final CustomerLimitTunnel customerLimitTunnel;
     private final IdGenerator idGenerator;
-    private final static Integer MAX_QUOTA = 5000000;
+    private final static Integer MAX_QUOTA = 500000;
 
     @Autowired
     public CustomerLimitRepository(CustomerLimitTunnel customerLimitTunnel, IdGenerator idGenerator) {
