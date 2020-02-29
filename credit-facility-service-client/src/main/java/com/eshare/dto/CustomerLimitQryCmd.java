@@ -1,7 +1,6 @@
 package com.eshare.dto;
 
 import com.alibaba.cola.dto.Query;
-import com.eshare.dto.clientobject.CustomerLimitCO;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;

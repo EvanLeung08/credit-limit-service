@@ -29,7 +29,6 @@ public class CustomerLimitRepository {
      * @return
      */
     public CustomerLimitDO find(Long customerId) {
-        Preconditions.checkNotNull(customerId, "customerId can not null");
         CustomerLimitDO cond = new CustomerLimitDO();
         cond.setCustomerId(customerId);
         return customerLimitTunnel.selectByModelSelective(cond, true);
@@ -43,9 +42,6 @@ public class CustomerLimitRepository {
      * @return
      */
     public CustomerLimitDO find(Long customerId, String quotaType) {
-        Preconditions.checkNotNull(customerId, "customerId can not null");
-        Preconditions.checkNotNull(quotaType, "quotaType can not null");
-
         CustomerLimitDO cond = new CustomerLimitDO();
         cond.setCustomerId(customerId);
         cond.setQuotaType(quotaType);

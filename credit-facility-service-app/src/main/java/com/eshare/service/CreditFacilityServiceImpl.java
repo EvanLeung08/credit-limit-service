@@ -8,8 +8,8 @@ import com.eshare.QuotaStatusUpdateCmdTypeEnum;
 import com.eshare.QuotaUpdateCmdTypeEnum;
 import com.eshare.api.CreditFacilityServiceI;
 import com.eshare.dto.*;
-import com.eshare.dto.domainmodel.CustomerLimit;
-import com.eshare.dto.domainmodel.ProductLimit;
+import com.eshare.dto.clientobject.CustomerLimitCO;
+import com.eshare.dto.clientobject.ProductLimitCO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,8 +26,8 @@ public class CreditFacilityServiceImpl implements CreditFacilityServiceI {
     private CommandBusI commandBus;
 
     @Override
-    public SingleResponse<ProductLimit> registerAccount(CreditLimitRegisterCmd creditLimitRegisterCmd) {
-        return (SingleResponse<ProductLimit>) commandBus.send(creditLimitRegisterCmd);
+    public SingleResponse<ProductLimitCO> registerAccount(CreditLimitRegisterCmd creditLimitRegisterCmd) {
+        return (SingleResponse<ProductLimitCO>) commandBus.send(creditLimitRegisterCmd);
     }
 
     @Override
@@ -159,12 +159,12 @@ public class CreditFacilityServiceImpl implements CreditFacilityServiceI {
     }
 
     @Override
-    public SingleResponse<CustomerLimit> fetchCustomerLimit(CustomerLimitQryCmd customerLimitQryCmd) {
-        return (SingleResponse<CustomerLimit>) commandBus.send(customerLimitQryCmd);
+    public SingleResponse<CustomerLimitCO> fetchCustomerLimit(CustomerLimitQryCmd customerLimitQryCmd) {
+        return (SingleResponse<CustomerLimitCO>) commandBus.send(customerLimitQryCmd);
     }
 
     @Override
-    public SingleResponse<ProductLimit> fetchProductLimit(ProductLimitQryCmd productLimitQryCmd) {
-        return (SingleResponse<ProductLimit>) commandBus.send(productLimitQryCmd);
+    public SingleResponse<ProductLimitCO> fetchProductLimit(ProductLimitQryCmd productLimitQryCmd) {
+        return (SingleResponse<ProductLimitCO>) commandBus.send(productLimitQryCmd);
     }
 }

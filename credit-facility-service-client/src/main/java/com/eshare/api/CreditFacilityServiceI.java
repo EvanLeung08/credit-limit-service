@@ -3,8 +3,8 @@ package com.eshare.api;
 import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.dto.SingleResponse;
 import com.eshare.dto.*;
-import com.eshare.dto.domainmodel.CustomerLimit;
-import com.eshare.dto.domainmodel.ProductLimit;
+import com.eshare.dto.clientobject.CustomerLimitCO;
+import com.eshare.dto.clientobject.ProductLimitCO;
 
 /**
  * @Author Evan Leung
@@ -13,7 +13,7 @@ import com.eshare.dto.domainmodel.ProductLimit;
  */
 public interface CreditFacilityServiceI {
 
-    public SingleResponse<ProductLimit> registerAccount(CreditLimitRegisterCmd creditLimitRegisterCmd);
+    public SingleResponse<ProductLimitCO> registerAccount(CreditLimitRegisterCmd creditLimitRegisterCmd);
 
     public Response freezeQuota(QuotaFreezeCmd quotaFreezeCmd);
 
@@ -43,8 +43,8 @@ public interface CreditFacilityServiceI {
 
     public Response dispatchQuotaStatusChangeCmd(BaseQuotaStatusChangeCmd baseQuotaStatusChangeCmd);
 
-    public SingleResponse<CustomerLimit> fetchCustomerLimit(CustomerLimitQryCmd customerLimitQryCmd);
+    public SingleResponse<CustomerLimitCO> fetchCustomerLimit(CustomerLimitQryCmd customerLimitQryCmd);
 
-    public SingleResponse<ProductLimit> fetchProductLimit(ProductLimitQryCmd productLimitQryCmd);
+    public SingleResponse<ProductLimitCO> fetchProductLimit(ProductLimitQryCmd productLimitQryCmd);
 
 }

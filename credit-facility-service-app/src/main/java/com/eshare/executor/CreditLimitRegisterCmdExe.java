@@ -9,7 +9,7 @@ import com.eshare.domain.gateway.CustomerGateway;
 import com.eshare.dto.CreditLimitRegisterCmd;
 import com.eshare.dto.clientobject.RegistrationLimitCO;
 import com.eshare.tunnel.database.dataobject.CustomerLimitDO;
-import com.eshare.dto.domainmodel.ProductLimit;
+import com.eshare.dto.clientobject.ProductLimitCO;
 import com.eshare.repository.CustomerLimitRepository;
 import com.eshare.repository.ProductLimitRepository;
 import com.eshare.tunnel.database.dataobject.ProductLimitDO;
@@ -22,7 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * 客户注册命令执行类
  */
 @Command
-public class CreditLimitRegisterCmdExe implements CommandExecutorI<SingleResponse<ProductLimit>, CreditLimitRegisterCmd> {
+public class CreditLimitRegisterCmdExe implements CommandExecutorI<SingleResponse<ProductLimitCO>, CreditLimitRegisterCmd> {
 
     private final ProductLimitRepository productLimitRepository;
     private final CustomerLimitRepository customerLimitRepository;
@@ -36,10 +36,9 @@ public class CreditLimitRegisterCmdExe implements CommandExecutorI<SingleRespons
     }
 
     @Override
-    public SingleResponse<ProductLimit> execute(CreditLimitRegisterCmd cmd) {
-        ProductLimit productLimitRsp = new ProductLimit();
+    public SingleResponse<ProductLimitCO> execute(CreditLimitRegisterCmd cmd) {
+        ProductLimitCO productLimitCO = new ProductLimitCO();
         RegistrationLimitCO registrationLimitCO = cmd.getRegistrationLimitCO();
-        //RegistrationLimit registrationLimit = new RegistrationLimit();
         ProductLimitDO productLimitDO = new ProductLimitDO();
         BeanUtils.copyProperties(registrationLimitCO, productLimitDO);
         Long customerId = customerGateway.getCustomerId(registrationLimitCO.getUserId());
@@ -56,7 +55,7 @@ public class CreditLimitRegisterCmdExe implements CommandExecutorI<SingleRespons
         // 2. 保存额度
         productLimitDO = productLimitRepository.save(productLimitDO);
         //3. 转换领域对象到dto
-        BeanUtils.copyProperties(productLimitDO, productLimitRsp);
-        return SingleResponse.of(productLimitRsp);
+        BeanUtils.copyProperties(productLimitDO, productLimitCO);
+        return SingleResponse.of(productLimitCO);
     }
 }

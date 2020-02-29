@@ -29,7 +29,11 @@
 			<groupId>com.eshare</groupId>
 			<artifactId>credit-facility-service-client</artifactId>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+    </dependencies>
 
 	<build>
 			<pluginManagement>

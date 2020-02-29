@@ -1,4 +1,4 @@
-package com.eshare.dto.domainmodel;
+package com.eshare.dto.clientobject;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -10,7 +10,7 @@ import lombok.Data;
  **/
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ProductLimit {
+public class ProductLimitCO {
 
     /**
      * 用户ID

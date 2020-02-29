@@ -4,10 +4,9 @@ import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.dto.SingleResponse;
 import com.eshare.api.CreditFacilityServiceI;
 import com.eshare.dto.*;
-import com.eshare.dto.domainmodel.CustomerLimit;
-import com.eshare.dto.domainmodel.ProductLimit;
+import com.eshare.dto.clientobject.CustomerLimitCO;
+import com.eshare.dto.clientobject.ProductLimitCO;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +27,7 @@ public class CreditFacilityController {
 
     @ApiOperation("注册额度账户接口")
     @PostMapping(value = "/account")
-    public SingleResponse<ProductLimit> registerAccount(@RequestBody(required = true) CreditLimitRegisterCmd cmd) {
+    public SingleResponse<ProductLimitCO> registerAccount(@RequestBody(required = true) CreditLimitRegisterCmd cmd) {
         return creditFacilityServiceI.registerAccount(cmd);
     }
 
@@ -48,7 +47,7 @@ public class CreditFacilityController {
 
     @ApiOperation("查询客户额度接口")
     @GetMapping(value = "/customers/{customerId}/quota")
-    public SingleResponse<CustomerLimit> fetchCustomerLimit(@PathVariable(required = true) Long customerId, @RequestParam(required = true) String quotaType) {
+    public SingleResponse<CustomerLimitCO> fetchCustomerLimit(@PathVariable(required = true) Long customerId, @RequestParam(required = true) String quotaType) {
         CustomerLimitQryCmd customerLimitQryCmd = new CustomerLimitQryCmd();
         customerLimitQryCmd.setCustomerId(customerId);
         customerLimitQryCmd.setQuotaType(quotaType);
@@ -57,7 +56,7 @@ public class CreditFacilityController {
 
     @ApiOperation("查询账户额度接口")
     @GetMapping(value = "/accounts/{accountId}/quota")
-    public SingleResponse<ProductLimit> fetchProductLimit(@PathVariable(required = true) Long accountId) {
+    public SingleResponse<ProductLimitCO> fetchProductLimit(@PathVariable(required = true) Long accountId) {
         ProductLimitQryCmd productLimitQryCmd = new ProductLimitQryCmd();
         productLimitQryCmd.setAccountId(accountId);
         return creditFacilityServiceI.fetchProductLimit(productLimitQryCmd);
