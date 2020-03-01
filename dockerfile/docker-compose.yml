@@ -1,0 +1,74 @@
+version: '3'
+services:
+
+  mysql:
+    restart: always
+    container_name: credit-facility-db
+    image: mysql
+    build: .
+    ports:
+      - "3301:3306"
+    volumes:
+      - "credit-facility-volume:/var/lib/mysql:rw"
+    environment:
+      - MYSQL_DATABASE=db_credit_facility
+      - MYSQL_ROOT_PASSWORD=evan123
+    networks:
+      credit-facility-net:
+        ipv4_address: 168.18.0.4
+
+  credit-facility-service1:
+    restart: always
+    container_name: credit-facility01
+    image: credit-facility-image
+    build: .
+    ports:
+      - "8081:8080"
+    networks:
+      credit-facility-net:
+        ipv4_address: 168.18.0.10
+
+
+  credit-facility-service2:
+    restart: always
+    container_name: credit-facility02
+    image: credit-facility-image
+    build: .
+    ports:
+      - "8082:8080"
+    networks:
+      credit-facility-net:
+        ipv4_address: 168.18.0.11
+
+  credit-facility-service3:
+    restart: always
+    container_name: credit-facility03
+    image: credit-facility-image
+    build: .
+    ports:
+      - "8083:8080"
+    networks:
+      credit-facility-net:
+        ipv4_address: 168.18.0.12
+
+  nginx:
+    restart: always
+    container_name: credit-facility-nginx
+    image: nginx
+    build: .
+    ports:
+      - "80:80"
+    volumes:
+      - /usr/local/credit-facility/nginx/nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      credit-facility-net:
+        ipv4_address: 168.18.0.5
+
+networks:
+  credit-facility-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 168.18.0.0/24
+volumes:
+  credit-facility-volume: {}
