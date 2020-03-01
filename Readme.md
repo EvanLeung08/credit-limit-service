@@ -1,4 +1,4 @@
-# 用户指南(项目未完成)
+# 用户指南(项目进行中)
 
 # Quickstart 快速开始
 1.在根目录执行```mvn clean -U install``` 进行构建
@@ -10,6 +10,9 @@
 
 4.通过以下URL可以进入H2控制台进行表操作
 http://localhost:8080/h2/
+
+5.Docker部署方式可以查看:
+https://www.cnblogs.com/evan-liang/p/12390315.html
 
 ***
 # 项目说明
