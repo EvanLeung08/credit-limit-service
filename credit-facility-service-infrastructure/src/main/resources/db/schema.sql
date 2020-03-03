@@ -20,7 +20,7 @@ CREATE TABLE `t_product_limit`
     `frozen_status`   tinyint default 1,
     `frozen_time`     datetime COMMENT '冻结时间',
     `expire_status`   tinyint,
-    `expiration_time` datetime default now()+300 COMMENT '过期时间',
+    `expiration_time` datetime default now() COMMENT '过期时间',
     `active_status`   tinyint,
     `inactive_time`   datetime COMMENT '禁用时间',
     `parent_id`       bigint(20),
