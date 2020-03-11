@@ -1,0 +1,49 @@
+version: '3'
+services:
+
+  mysql:
+    restart: always
+    container_name: credit-facility-db
+    image: mysql
+    ports:
+      - "3301:3306"
+    volumes:
+      - "credit-facility-volume:/var/lib/mysql:rw"
+    environment:
+      - MYSQL_DATABASE=db_credit_facility
+      - MYSQL_ROOT_PASSWORD=evan123
+    networks:
+      - credit-facility-net
+    deploy:
+      mode: global
+      placement:
+        constraints:
+          - node.role == manager
+
+  credit-facility-service:
+    restart: always
+    depends_on:
+      - mysql
+    image: credit-facility
+    build: .
+    ports:
+      - 8080:8080
+    networks:
+      - credit-facility-net
+    deploy:
+      mode: replicated
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+      update_config:
+        parallelism: 1
+        delay: 10s
+
+networks:
+  credit-facility-net:
+    driver: overlay
+
+volumes:
+  credit-facility-volume: {}
