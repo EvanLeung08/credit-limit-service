@@ -27,7 +27,7 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.basePackage("com.eshare.controller"))
                 .paths(PathSelectors.any())
                 .build().apiInfo(new ApiInfoBuilder()
-                        .title("消费金融额度服务")
+                        .title("简单版消费金融额度服务")
                         .description("提供额度账户开通、额度状态管理、额度数值变更、额度注册、额度查询等操作")
                         .version("1.0")
                         .contact(new Contact("Evan Leung","http://www.evanshare.com","10856214@163.com"))
