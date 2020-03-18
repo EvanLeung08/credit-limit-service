@@ -1,5 +1,6 @@
 package com.eshare.domain.thirdpartyproduct;
 
+import com.alibaba.cola.domain.ValueObject;
 import lombok.Data;
 
 /**
@@ -8,5 +9,5 @@ import lombok.Data;
  * @Author Evan Leung
  **/
 @Data
-public class JDProductLimit {
+public class JDProductLimit implements ValueObject {
 }
