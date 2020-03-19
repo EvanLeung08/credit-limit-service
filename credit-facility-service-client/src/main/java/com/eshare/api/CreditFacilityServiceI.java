@@ -15,30 +15,6 @@ public interface CreditFacilityServiceI {
 
     public SingleResponse<ProductLimitCO> registerAccount(CreditLimitRegisterCmd creditLimitRegisterCmd);
 
-    public Response freezeQuota(QuotaFreezeCmd quotaFreezeCmd);
-
-    public Response unfreezeQuota(QuotaUnfreezeCmd quotaUnfreezeCmd);
-
-    public Response subtractQuota(QuotaSubtractionCmd quotaSubtractionCmd);
-
-    public Response recoverQuota(QuotaRecoveryCmd quotaRecoveryCmd);
-
-    public Response freezeProductQuotaBySys(ProductQuotaSysFreezeCmd productQuotaSysFreezeCmd);
-
-    public Response freezeProductQuotaByMan(ProductQuotaManualFreezeCmd productQuotaManualFreezeCmd);
-
-    public Response unfreezeProductQuota(ProductQuotaUnfreezeCmd productQuotaUnfreezeCmd);
-
-    public Response forceUnfreezeProductQuota(ProductQuotaForcedUnfreezeCmd productQuotaUnfreezeCmd);
-
-    public Response inactivateProductQuota(ProductQuotaInactiveCmd productQuotaInactiveCmd);
-
-    public Response activateProductQuota(ProductQuotaActivateCmd productQuotaActivateCmd);
-
-    public Response abandonProductQuota(ProductQuotaAbandonmentCmd productQuotaAbandonmentCmd);
-
-    public Response changeQuota(QuotaChangeCmd qotaChangeCmd);
-
     public Response dispatchQuotaChangeCmd(BaseQuotaAmountUpdateCmd baseQuotaAmountUpdateCmd);
 
     public Response dispatchQuotaStatusChangeCmd(BaseQuotaStatusChangeCmd baseQuotaStatusChangeCmd);

@@ -30,65 +30,7 @@ public class CreditFacilityServiceImpl implements CreditFacilityServiceI {
         return (SingleResponse<ProductLimitCO>) commandBus.send(creditLimitRegisterCmd);
     }
 
-    @Override
-    public Response freezeQuota(QuotaFreezeCmd quotaFreezeCmd) {
-        return commandBus.send(quotaFreezeCmd);
-    }
 
-    @Override
-    public Response unfreezeQuota(QuotaUnfreezeCmd quotaUnfreezeCmd) {
-        return commandBus.send(quotaUnfreezeCmd);
-    }
-
-    @Override
-    public Response subtractQuota(QuotaSubtractionCmd quotaSubtractionCmd) {
-        return commandBus.send(quotaSubtractionCmd);
-    }
-
-    @Override
-    public Response recoverQuota(QuotaRecoveryCmd quotaRecoveryCmd) {
-        return commandBus.send(quotaRecoveryCmd);
-    }
-
-    @Override
-    public Response freezeProductQuotaBySys(ProductQuotaSysFreezeCmd productQuotaSysFreezeCmd) {
-        return commandBus.send(productQuotaSysFreezeCmd);
-    }
-
-    @Override
-    public Response freezeProductQuotaByMan(ProductQuotaManualFreezeCmd productQuotaManualFreezeCmd) {
-        return commandBus.send(productQuotaManualFreezeCmd);
-    }
-
-    @Override
-    public Response unfreezeProductQuota(ProductQuotaUnfreezeCmd productQuotaUnfreezeCmd) {
-        return commandBus.send(productQuotaUnfreezeCmd);
-    }
-
-    @Override
-    public Response forceUnfreezeProductQuota(ProductQuotaForcedUnfreezeCmd productQuotaUnfreezeCmd) {
-        return commandBus.send(productQuotaUnfreezeCmd);
-    }
-
-    @Override
-    public Response inactivateProductQuota(ProductQuotaInactiveCmd productQuotaInactiveCmd) {
-        return commandBus.send(productQuotaInactiveCmd);
-    }
-
-    @Override
-    public Response activateProductQuota(ProductQuotaActivateCmd productQuotaActivateCmd) {
-        return commandBus.send(productQuotaActivateCmd);
-    }
-
-    @Override
-    public Response abandonProductQuota(ProductQuotaAbandonmentCmd productQuotaAbandonmentCmd) {
-        return commandBus.send(productQuotaAbandonmentCmd);
-    }
-
-    @Override
-    public Response changeQuota(QuotaChangeCmd qotaChangeCmd) {
-        return commandBus.send(qotaChangeCmd);
-    }
 
     @Override
     public Response dispatchQuotaChangeCmd(BaseQuotaAmountUpdateCmd cmd) {
