@@ -10,12 +10,12 @@ import org.springframework.context.annotation.Bean;
 
 /**
  * Spring Boot Starter
- *
+ * <p>
  * COLA framework initialization is configured in {@link com.eshare.config.ColaConfig}
  *
  * @author Evan Leung
  */
-@SpringBootApplication(scanBasePackages = {"com.eshare","com.alibaba.cola"})
+@SpringBootApplication(scanBasePackages = {"com.eshare", "com.alibaba.cola"})
 @MapperScan("com.eshare.tunnel.database")
 public class Application {
 
@@ -25,6 +25,7 @@ public class Application {
 
     /**
      * Enable h2 console
+     *
      * @return
      */
     @Bean

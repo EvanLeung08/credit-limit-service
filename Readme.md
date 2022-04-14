@@ -35,3 +35,6 @@ https://www.cnblogs.com/evan-liang/p/12390315.html
 
 }
 ```
+
+2.查询账户额度
+localhost:8080/accounts/964302167861235713/quota

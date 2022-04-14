@@ -26,16 +26,16 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="credit-facility-service-controller" />
-    <orderEntry type="module" module-name="credit-facility-service-app" />
-    <orderEntry type="module" module-name="credit-facility-service-client" />
+    <orderEntry type="module" module-name="credit-limit-service-controller" />
+    <orderEntry type="module" module-name="credit-limit-service-app" />
+    <orderEntry type="module" module-name="credit-limit-service-client" />
     <orderEntry type="library" name="Maven: com.alibaba.cola:cola-common:2.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.12.6" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.0" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.8" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.8" level="project" />
-    <orderEntry type="module" module-name="credit-facility-service-infrastructure" />
-    <orderEntry type="module" module-name="credit-facility-service-domain" />
+    <orderEntry type="module" module-name="credit-limit-service-infrastructure" />
+    <orderEntry type="module" module-name="credit-limit-service-domain" />
     <orderEntry type="library" name="Maven: com.alibaba.cola:cola-core:2.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.reflections:reflections:0.9.10" level="project" />
     <orderEntry type="library" name="Maven: org.javassist:javassist:3.19.0-GA" level="project" />
@@ -96,7 +96,7 @@
     <orderEntry type="module-library">
       <library name="Maven: com.sun:tools:1.8">
         <CLASSES>
-          <root url="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/lib/tools.jar!/" />
+          <root url="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/lib/tools.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
