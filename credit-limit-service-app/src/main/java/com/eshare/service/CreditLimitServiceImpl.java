@@ -6,7 +6,7 @@ import com.alibaba.cola.dto.SingleResponse;
 import com.alibaba.cola.exception.BizException;
 import com.eshare.QuotaStatusUpdateCmdTypeEnum;
 import com.eshare.QuotaUpdateCmdTypeEnum;
-import com.eshare.api.CreditFacilityServiceI;
+import com.eshare.api.CreditLimitServiceI;
 import com.eshare.dto.*;
 import com.eshare.dto.clientobject.CustomerLimitCO;
 import com.eshare.dto.clientobject.ProductLimitCO;
@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
  * 额度服务类
  */
 @Service
-public class CreditFacilityServiceImpl implements CreditFacilityServiceI {
+public class CreditLimitServiceImpl implements CreditLimitServiceI {
 
     @Autowired
     private CommandBusI commandBus;

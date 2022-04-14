@@ -2,7 +2,7 @@ package com.eshare.controller;
 
 import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.dto.SingleResponse;
-import com.eshare.api.CreditFacilityServiceI;
+import com.eshare.api.CreditLimitServiceI;
 import com.eshare.dto.*;
 import com.eshare.dto.clientobject.CustomerLimitCO;
 import com.eshare.dto.clientobject.ProductLimitCO;
@@ -19,30 +19,30 @@ import org.springframework.web.bind.annotation.*;
  */
 @Api(tags = "信贷额度对外服务接口")
 @RestController
-public class CreditFacilityController {
+public class CreditLimitController {
 
     @Autowired
-    private CreditFacilityServiceI creditFacilityServiceI;
+    private CreditLimitServiceI creditLimitServiceI;
 
 
     @ApiOperation("注册额度账户接口")
     @PostMapping(value = "/account")
     public SingleResponse<ProductLimitCO> registerAccount(@RequestBody(required = true) CreditLimitRegisterCmd cmd) {
-        return creditFacilityServiceI.registerAccount(cmd);
+        return creditLimitServiceI.registerAccount(cmd);
     }
 
     @ApiOperation("更新账户额度接口")
     @PutMapping(value = "/accounts/{accountId}/quota")
     public Response changeQuota(@PathVariable(required = true) Long accountId, @RequestBody(required = true) BaseQuotaAmountUpdateCmd cmd) {
         cmd.setAccountId(accountId);
-        return creditFacilityServiceI.dispatchQuotaChangeCmd(cmd);
+        return creditLimitServiceI.dispatchQuotaChangeCmd(cmd);
     }
 
     @ApiOperation("更新额度账户状态接口")
     @PutMapping(value = "/accounts/{accountId}/status")
     public Response changeAccountStatus(@PathVariable(required = true) Long accountId, @RequestBody(required = true) BaseQuotaStatusChangeCmd cmd) {
         cmd.setAccountId(accountId);
-        return creditFacilityServiceI.dispatchQuotaStatusChangeCmd(cmd);
+        return creditLimitServiceI.dispatchQuotaStatusChangeCmd(cmd);
     }
 
     @ApiOperation("查询客户额度接口")
@@ -51,7 +51,7 @@ public class CreditFacilityController {
         CustomerLimitQryCmd customerLimitQryCmd = new CustomerLimitQryCmd();
         customerLimitQryCmd.setCustomerId(customerId);
         customerLimitQryCmd.setQuotaType(quotaType);
-        return creditFacilityServiceI.fetchCustomerLimit(customerLimitQryCmd);
+        return creditLimitServiceI.fetchCustomerLimit(customerLimitQryCmd);
     }
 
     @ApiOperation("查询账户额度接口")
@@ -59,6 +59,6 @@ public class CreditFacilityController {
     public SingleResponse<ProductLimitCO> fetchProductLimit(@PathVariable(required = true) Long accountId) {
         ProductLimitQryCmd productLimitQryCmd = new ProductLimitQryCmd();
         productLimitQryCmd.setAccountId(accountId);
-        return creditFacilityServiceI.fetchProductLimit(productLimitQryCmd);
+        return creditLimitServiceI.fetchProductLimit(productLimitQryCmd);
     }
 }

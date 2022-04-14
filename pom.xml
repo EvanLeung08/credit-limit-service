@@ -80,6 +80,13 @@
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>${mybatis-starter.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-tomcat</artifactId>
+                <!-- 也有人说这个 provided 可能有问题，具体可以自行测试-->
+                <scope>provided</scope>
+            </dependency>
+
 
             <!--Spring Boot End-->
             <!--Validation API-->

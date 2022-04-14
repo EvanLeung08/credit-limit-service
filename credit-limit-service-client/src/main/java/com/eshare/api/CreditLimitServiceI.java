@@ -11,7 +11,7 @@ import com.eshare.dto.clientobject.ProductLimitCO;
  * <p>
  * 额度服务接口
  */
-public interface CreditFacilityServiceI {
+public interface CreditLimitServiceI {
 
     public SingleResponse<ProductLimitCO> registerAccount(CreditLimitRegisterCmd creditLimitRegisterCmd);
 
