@@ -26,11 +26,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="credit-limit-service-controller" />
-    <orderEntry type="module" module-name="credit-limit-service-app" />
-    <orderEntry type="module" module-name="credit-limit-service-client" />
-    <orderEntry type="module" module-name="credit-limit-service-infrastructure" />
-    <orderEntry type="module" module-name="credit-limit-service-domain" />
+    <orderEntry type="library" name="Maven: com.h2database:h2:1.4.193" level="project" />
+    <orderEntry type="library" name="Maven: org.hibernate.validator:hibernate-validator:6.1.0.Final" level="project" />
     <orderEntry type="module" module-name="credit-limit-service-controller" />
     <orderEntry type="module" module-name="credit-limit-service-app" />
     <orderEntry type="module" module-name="credit-limit-service-client" />
