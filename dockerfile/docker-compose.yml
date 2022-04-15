@@ -3,81 +3,81 @@ services:
 
   mysql:
     restart: always
-    container_name: credit-facility-db
+    container_name: credit-limit-db
     image: mysql
     ports:
       - "3301:3306"
     volumes:
-      - "credit-facility-volume:/var/lib/mysql:rw"
+      - "credit-limit-volume:/var/lib/mysql:rw"
     environment:
-      - MYSQL_DATABASE=db_credit_facility
+      - MYSQL_DATABASE=db_credit_limit
       - MYSQL_ROOT_PASSWORD=evan123
     networks:
-      credit-facility-net:
+      credit-limit-net:
         ipv4_address: 168.18.0.4
 
-  credit-facility-service1:
+  credit-limit-service1:
     restart: always
     container_name: credit-facility01
     depends_on:
       - mysql
-    image: credit-facility-image
+    image: credit-limit-image
     build: .
     ports:
       - "8081:8080"
     networks:
-      credit-facility-net:
+      credit-limit-net:
         ipv4_address: 168.18.0.10
 
 
-  credit-facility-service2:
+  credit-limit-service2:
     restart: always
     container_name: credit-facility02
     depends_on:
       - mysql
-    image: credit-facility-image
+    image: credit-limit-image
     build: .
     ports:
       - "8082:8080"
     networks:
-      credit-facility-net:
+      credit-limit-net:
         ipv4_address: 168.18.0.11
 
-  credit-facility-service3:
+  credit-limit-service3:
     restart: always
     container_name: credit-facility03
     depends_on:
       - mysql
-    image: credit-facility-image
+    image: credit-limit-image
     build: .
     ports:
       - "8083:8080"
     networks:
-      credit-facility-net:
+      credit-limit-net:
         ipv4_address: 168.18.0.12
 
   web:
     restart: always
-    image: credit-facility-image
+    image: credit-limit-image
     build: .
     expose:
       - "8080"
     depends_on:
       - mysql
-      - credit-facility-service1
-      - credit-facility-service2
-      - credit-facility-service3
+      - credit-limit-service1
+      - credit-limit-service2
+      - credit-limit-service3
     networks:
-      - credit-facility-net
+      - credit-limit-net
 
   nginx:
     restart: always
-    container_name: credit-facility-nginx
+    container_name: credit-limit-nginx
     depends_on:
       - mysql
-      - credit-facility-service1
-      - credit-facility-service2
-      - credit-facility-service3
+      - credit-limit-service1
+      - credit-limit-service2
+      - credit-limit-service3
       - web
     image: nginx
     ports:
@@ -85,15 +85,15 @@ services:
     links:
       - web
     volumes:
-      - /usr/local/credit-facility/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - /usr/local/credit-limit/nginx/nginx.conf:/etc/nginx/nginx.conf
     networks:
-      - credit-facility-net
+      - credit-limit-net
 
 networks:
-  credit-facility-net:
+  credit-limit-net:
     driver: bridge
     ipam:
       config:
         - subnet: 168.18.0.0/24
 volumes:
-  credit-facility-volume: {}
+  credit-limit-volume: {}
