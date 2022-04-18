@@ -2,7 +2,6 @@ package com.eshare.dto.domainevent;
 
 import com.alibaba.cola.event.DomainEventI;
 
-import static com.eshare.dto.domainevent.DomainEventConstant.CUSTOMER_CREATED_TOPIC;
 
 /**
  * CustomerCreatedEvent
